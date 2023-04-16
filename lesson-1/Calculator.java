@@ -1,7 +1,7 @@
 public class Calculator {
     public static void main(String[] args) {
-        int num1 = 5;
-        int num2 = 2;
+        int num1 = (int) (Math.random() * 10);
+        int num2 = (int) (Math.random() * 10);
         char sign = '*';
         switch (sign) {
             case '+':
