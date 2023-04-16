@@ -82,27 +82,27 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n#5. Определение символа по его коду");
-            char symbol = '\u0057';
-            if ((int) symbol >= 65 && (int) symbol <= 90) {
-                System.out.println(symbol + " is a big letter");
-            } else if ((int) symbol >= 97 && (int) symbol <= 122) {
-                System.out.println(symbol + " is a small letter");
-            } else if ((int) symbol >= 48 && (int) symbol <= 57) {
-                System.out.println(symbol + " is a number");
-            } else {
-                System.out.println(symbol + " is not a number and not a letter");
-            }
+        char symbol = '\u0057';
+        if ((int) symbol >= 65 && (int) symbol <= 90) {
+            System.out.println(symbol + " is a big letter");
+        } else if ((int) symbol >= 97 && (int) symbol <= 122) {
+            System.out.println(symbol + " is a small letter");
+        } else if ((int) symbol >= 48 && (int) symbol <= 57) {
+            System.out.println(symbol + " is a number");
+        } else {
+            System.out.println(symbol + " is not a number and not a letter");
+        }
 
         System.out.println("\n#6. Подсчет суммы вклада и начисленных банком %");
-            int depositTotal = 300000;
-            int accruedInterest = 0;
-            if (depositTotal < 100000) {
-               accruedInterest = depositTotal * 5 / 100;
-            } else if (depositTotal >= 100000 && depositTotal <= 300000) {
-                accruedInterest = depositTotal * 7 / 100;
-            } else {
-                accruedInterest = depositTotal * 10 / 100;
-            }
+        int depositTotal = 300000;
+        int accruedInterest = 0;
+        if (depositTotal < 100000) {
+           accruedInterest = depositTotal * 5 / 100;
+        } else if (depositTotal >= 100000 && depositTotal <= 300000) {
+            accruedInterest = depositTotal * 7 / 100;
+        } else {
+            accruedInterest = depositTotal * 10 / 100;
+        }
         System.out.println("Total deposit = " + depositTotal + "; accrued interest = " +
                 accruedInterest + "; total = " + (depositTotal + accruedInterest)
         );
