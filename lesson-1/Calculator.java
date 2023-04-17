@@ -28,11 +28,15 @@ public class Calculator {
                 System.out.println(num1 + " % " + num2 + " = " + (num1 % num2));
                 break;
             case '^':
-                int multiply = 1;
-                if (num2 == 0 && num1 != 0) {
-                    System.out.println(num1 + " ^ " + num2 + " = " + multiply);
+                if (num1 == 1 || num1 == 0) {
+                    System.out.println(num1 + " ^ " + num2 + " = " + num1);
                     break;
                 }
+                if (num2 == 0) {
+                    System.out.println(num1 + " ^ " + num2 + " = 1");
+                    break;
+                }
+                int multiply = 1;
                 for (int i = 0; i < num2; i++) {
                     multiply *= num1;
                 }
