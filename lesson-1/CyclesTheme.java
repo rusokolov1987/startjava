@@ -5,15 +5,15 @@ public class CyclesTheme {
         System.out.println("#1. Подсчет суммы четных и нечетных чисел");
         int totalEven = 0;
         int totalOdd = 0;
-        int startLine = -10;
+        int start = -10;
         do {
-            if (startLine % 2 == 0) {
-                totalEven += startLine;
+            if (start % 2 == 0) {
+                totalEven += start;
             } else {
-                totalOdd += startLine;
+                totalOdd += start;
             }
-            startLine++;
-        } while (startLine < 21);
+            start++;
+        } while (start < 21);
         System.out.println("В промежутке [-10; 21] сумма четных чисел = " + totalEven +
                 ", сумма нечетных = " + totalOdd
         );
@@ -68,7 +68,7 @@ public class CyclesTheme {
 
         System.out.println("\n#5. Проверка количества двоек на четность/нечетность");
         int num1 = 3242592;
-        int copy = num1;
+        int copyNum1 = num1;
         int count = 0;
         while (num1 != 0) {
             if (num1 % 10 == 2) {
@@ -76,7 +76,7 @@ public class CyclesTheme {
             }
             num1 /= 10;
         }
-        System.out.println("Число " + copy + " содержит " + count +
+        System.out.println("Число " + copyNum1 + " содержит " + count +
                 " (" + (count % 2 == 0 ? "четное" : "нечетное") + ") количество двоек"
         );
 
@@ -138,11 +138,11 @@ public class CyclesTheme {
 
         System.out.println("\n#8. Проверка, является ли число палиндромом");
         int num2 = 1234321;
-        int copy2 = num2;
+        int copyNum2 = num2;
         String reverse = "";
-        while (copy2 != 0) {
-            reverse += copy2 % 10;
-            copy2 /= 10;
+        while (copyNum2 != 0) {
+            reverse += copyNum2 % 10;
+            copyNum2 /= 10;
         }
         if (num2 == Integer.parseInt(reverse)) {
             System.out.println("Число " + num2 + " является палиндромом");
