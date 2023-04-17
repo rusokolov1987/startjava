@@ -99,31 +99,30 @@ public class VariablesTheme {
         char underline = '_';
         char bracketLeft = '(';
         char bracketRight = ')';
-        System.out.println("     " + slash + "" + backslash + "\n    " + slash + "  " + backslash +
-                "\n   " + slash + "" + underline + bracketLeft + " " + bracketRight + "" +
-                backslash + "\n  " + slash + "      " + backslash + "\n " + slash + ""+ underline +
-                "" + underline + "" + underline + "" + underline + "" + slash + "" + backslash + ""
-                + underline + "" + underline + "" + backslash
-        );
+        System.out.printf("%7c%1c%n%6c%3c%n%5c%c%c%2c%c%n%4c%7c%n%3c%c%c%c%c%c%c%c%c%c%n", slash,
+                backslash, slash, backslash, slash, underline, bracketLeft, bracketRight, backslash,
+                slash, backslash, slash, underline, underline, underline, underline, slash,
+                backslash, underline, underline, backslash);
+
 
         System.out.println("\n#8. Вывод количества сотен, десятков и единиц числа");
-        int number = 123;
-        int numberOfUnits = number % 10;
-        int numberOfTens = number / 10 % 10;
-        int numberOfHundreds = number / 100;
-        int digitsSum = numberOfUnits + numberOfTens + numberOfHundreds;
-        int multiplyDigits = numberOfUnits * numberOfTens * numberOfHundreds;
-        System.out.println("Число " + number + " содержит:\n " + numberOfHundreds + " сотен\n "+
-                numberOfTens + " десятков\n " + numberOfUnits + " единиц");
-        System.out.println("Сумма его цифр = " + digitsSum + "\nПроизведение его цифр = " + 
+        int num3 = 123;
+        int ones = num3 % 10;
+        int tens = num3 / 10 % 10;
+        int hundreds = num3 / 100;
+        int sumDigits = ones + tens + hundreds;
+        int multiplyDigits = ones * tens * hundreds;
+        System.out.println("Число " + num3 + " содержит:\n " + hundreds + " сотен\n "+
+                tens + " десятков\n " + ones + " единиц");
+        System.out.println("Сумма его цифр = " + sumDigits + "\nПроизведение его цифр = " + 
                 multiplyDigits
         );
 
         System.out.println("\n9. Вывод времени");
         int totalSeconds = 86399;
-        int minutes = totalSeconds % 60;
         int hour = totalSeconds / 3600;
-        int seconds = totalSeconds % (totalSeconds / 60);
+        int minutes = (totalSeconds - hour * 3600) % 60;
+        int seconds = totalSeconds - hour * 3600 - minutes * 60;
         System.out.println(hour + ":" + minutes + ":" + seconds);
     }
 }
