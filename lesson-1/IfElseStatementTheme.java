@@ -92,9 +92,9 @@ public class IfElseStatementTheme {
         char symbol = '\u0057';
         if (symbol >= 'A' && symbol <= 'Z') {
             System.out.println(symbol + " is a big letter");
-        } else if (symbol >= 'a' && (int) symbol <= 'z') {
+        } else if (symbol >= 'a' && symbol <= 'z') {
             System.out.println(symbol + " is a small letter");
-        } else if (symbol >= '0' && (int) symbol <= '9') {
+        } else if (symbol >= '0' && symbol <= '9') {
             System.out.println(symbol + " is a number");
         } else {
             System.out.println(symbol + " is not a number and not a letter");
@@ -108,38 +108,38 @@ public class IfElseStatementTheme {
         } else if (depositTotal < 100000) {
             accruedInterest = depositTotal * 5 / 100;
         }
-        System.out.println("Total deposit = " + depositTotal + "; accrued interest = " +
-                accruedInterest + "; total = " + (depositTotal + accruedInterest)
+        System.out.println("Total deposit = " + depositTotal +
+                "\naccrued interest = " + accruedInterest +
+                "\ntotal = " + (depositTotal + accruedInterest)
         );
 
         System.out.println("\n#7. Определение оценки по предметам");
-        int historyResultScore = 59;
+        int historyPercent = 59;
         int historyScore = 4;
-
-        if (historyResultScore <= 60) {
+        if (historyPercent <= 60) {
             historyScore = 2;
-        } else if (historyResultScore > 60 && historyResultScore <= 73) {
+        } else if (historyPercent > 60 && historyPercent <= 73) {
             historyScore = 3;
-        } else if (historyResultScore > 91) {
+        } else if (historyPercent > 91) {
             historyScore = 5;
         }
-        int programmingResultScore = 91;
+        int programmingPercent = 91;
         int programmingScore = 4;
-        if (programmingResultScore <= 60) {
+        if (programmingPercent <= 60) {
             programmingScore = 2;
-        } else if (programmingResultScore > 60 && programmingResultScore <= 73) {
+        } else if (programmingPercent > 60 && programmingPercent <= 73) {
             programmingScore = 3;
-        } else if (programmingResultScore > 91) {
+        } else if (programmingPercent > 91) {
             programmingScore = 5;
         }
-        System.out.println("Оценка " + historyScore + " по истории\nОценка " + programmingScore +
-                " по программированию"
+        System.out.println("Оценка " + historyScore + " по истории\n" +
+                "Оценка " + programmingScore + " по программированию"
         ); 
         System.out.println("Средний балл по предметам " +
                 (double) (historyScore + programmingScore) / 2
         );
         System.out.println("Средний процент по предметам = " +
-                (double) (historyResultScore + programmingResultScore) / 2
+                (double) (historyPercent + programmingPercent) / 2
         );
 
         System.out.println("\n#8. Расчет прибыли за год");
@@ -147,36 +147,36 @@ public class IfElseStatementTheme {
         int averageIncome = 13000;
         int costPrice = 9000;
         int yearIncome = 12 * (averageIncome - costPrice - rentAppartment);
-        if (yearIncome < 0) {
-            System.out.println(yearIncome);
-        } else {
+        if (yearIncome > 0) {
             System.out.println("+" + yearIncome);
+        } else {
+            System.out.println(yearIncome);
         }
 
         System.out.println("\n#9. Подсчет количества банкнот");
         int money = 567;
-        int banknoteHundred = 10;
-        int banknoteTen = 5;
-        int banknoteOne = 50;
-        if ((banknoteHundred * 100 + banknoteTen * 10 + banknoteOne) >= money) {
-            if ((banknoteHundred - money / 100) >= 0) {
-                banknoteHundred = money / 100;
-                money = money % 100;
+        int hundreds = 10;
+        int tens = 5;
+        int ones = 50;
+        if ((hundreds * 100 + tens * 10 + ones) >= money) {
+            if ((hundreds - money / 100) >= 0) {
+                hundreds = money / 100;
+                money %= 100;
             } else {
-                money = money - banknoteHundred * 100;
+                money = money - hundreds * 100;
             }
-            if ((banknoteTen - money / 10) >= 0) {
-                banknoteTen = money / 10;
-                money = money % 10;
+            if ((tens - money / 10) >= 0) {
+                tens = money / 10;
+                money %= 10;
             } else {
-                money = money - banknoteTen * 10;
+                money -= tens * 10;
             }
-            if ((banknoteOne - money) >= 0) {
-                banknoteOne = money;
+            if ((ones - money) >= 0) {
+                ones = money;
             }
-            System.out.println("100 USD = " + banknoteHundred + " total = " +
-                    banknoteHundred * 100 + "; 10 USD = " + banknoteTen + " total = " +
-                    banknoteTen * 10 + "; 1 USD = " + banknoteOne + " total = " + banknoteOne
+            System.out.println("100 USD = " + hundreds + " total = " + hundreds * 100 +
+                    "\n10 USD = " + tens + " total = " + tens * 10 +
+                    "\n1 USD = " + ones + " total = " + ones
             );
         } else {
              System.out.println("В банкомате недостаточно средств");

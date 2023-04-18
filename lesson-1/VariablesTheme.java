@@ -121,8 +121,8 @@ public class VariablesTheme {
         System.out.println("\n9. Вывод времени");
         int totalSeconds = 86399;
         int hour = totalSeconds / 3600;
-        int minutes = (totalSeconds - hour * 3600) % 60;
-        int seconds = totalSeconds - hour * 3600 - minutes * 60;
+        int minutes = totalSeconds / 60 % 60;
+        int seconds = totalSeconds % 60;
         System.out.println(hour + ":" + minutes + ":" + seconds);
     }
 }
