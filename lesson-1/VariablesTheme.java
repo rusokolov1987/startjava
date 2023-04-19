@@ -14,8 +14,7 @@ public class VariablesTheme {
                 memory + "\nОбъем SSD: " + ssd + "\nЧастота оперативной памяти: " +
                 memoryRate + "\n" + "Максимальная частота CPU: " +
                 cpuMaxRate + "\nЧастота CPU: " + cpuRate + "\nНаличие Bluetooth: " +
-                (bluetoothActive ? "да\n" : "нет\n") + "MSI" +tradeMark
-        );
+                (bluetoothActive ? "да\n" : "нет\n") + "MSI" +tradeMark);
 
         System.out.println("#2. Расчет стоимости товара со скидкой");
         int priceBook = 200;
@@ -26,13 +25,11 @@ public class VariablesTheme {
         int discountPrice = total - discountSum;
         System.out.println("Общая стоимость товаров без скидки = " + total + 
                 "\nОбщая сумма скидки = " + discountSum + 
-                "\nОбщая стоимость товара со скидкой = " + discountPrice + "\n"
-        );
+                "\nОбщая стоимость товара со скидкой = " + discountPrice + "\n");
 
         System.out.println("#3. Вывод слова JAVA");
         System.out.println("    J    a   v     v   a\n    J   a a   v   v   a a\nJ   J  aaaaa   " + 
-                "V V   aaaaa\n JJ   a     a   V   a     a\n"
-        );
+                "V V   aaaaa\n JJ   a     a   V   a     a\n");
 
         System.out.println("#4. Вывод min и max значений целых числовых типов");
         byte maxByte = 127;
@@ -90,8 +87,7 @@ public class VariablesTheme {
                 "\nCode ASCII " + (int) ampersand + " character ASCII " + ampersand +
                 "\nCode ASCII " + (int) atSign + " character ASCII " + atSign + 
                 "\nCode ASCII " + (int) caretCircumflex + " character ASCII " + caretCircumflex +
-                "\nCode ASCII " + (int) underscore + " character ASCII " + underscore
-        );
+                "\nCode ASCII " + (int) underscore + " character ASCII " + underscore);
 
         System.out.println("\n#7. Вывод в консоль ASCII-арт Дюка");
         char slash = '/';
@@ -115,8 +111,7 @@ public class VariablesTheme {
         System.out.println("Число " + num3 + " содержит:\n " + hundreds + " сотен\n "+
                 tens + " десятков\n " + ones + " единиц");
         System.out.println("Сумма его цифр = " + sumDigits + "\nПроизведение его цифр = " + 
-                multiplyDigits
-        );
+                multiplyDigits);
 
         System.out.println("\n9. Вывод времени");
         int totalSeconds = 86399;

@@ -73,18 +73,15 @@ public class IfElseStatementTheme {
         } else {
             if (hundredsNum1 == hundredsNum2) {
                 System.out.println("Числа " + num4 + " и " + num5 + " имеют одинаковую цифру = " +
-                        num4 / 100 + " в разряде #3"
-                );
+                        hundredsNum1 + " в разряде #3");
             }
             if (tensNum1 == tensNum2) {
                 System.out.println("Числа " + num4 + " и " + num5 + " имеют одинаковую цифру = " + 
-                        num4 / 10 % 10 + " в разряде #2"
-                );
+                        tensNum1 + " в разряде #2");
             }
             if (onesNum1 == onesNum2) {
                 System.out.println("Числа " + num4 + " и " + num5 + " имеют одинаковую цифру = " +
-                        num4 % 10 + " в разряде #1"
-                );
+                        onesNum1 + " в разряде #1");
             }
         }
 
@@ -110,8 +107,7 @@ public class IfElseStatementTheme {
         }
         System.out.println("Total deposit = " + depositTotal +
                 "\naccrued interest = " + accruedInterest +
-                "\ntotal = " + (depositTotal + accruedInterest)
-        );
+                "\ntotal = " + (depositTotal + accruedInterest));
 
         System.out.println("\n#7. Определение оценки по предметам");
         int historyPercent = 59;
@@ -133,8 +129,7 @@ public class IfElseStatementTheme {
             programmingScore = 5;
         }
         System.out.println("Оценка " + historyScore + " по истории\n" +
-                "Оценка " + programmingScore + " по программированию"
-        ); 
+                "Оценка " + programmingScore + " по программированию"); 
         System.out.println("Средний балл по предметам " +
                 (double) (historyScore + programmingScore) / 2
         );
@@ -155,29 +150,28 @@ public class IfElseStatementTheme {
 
         System.out.println("\n#9. Подсчет количества банкнот");
         int money = 567;
-        int hundreds = 10;
-        int tens = 5;
-        int ones = 50;
-        if ((hundreds * 100 + tens * 10 + ones) >= money) {
-            if ((hundreds - money / 100) >= 0) {
-                hundreds = money / 100;
+        int banknote100 = 10;
+        int banknote10 = 5;
+        int banknote1 = 50;
+        if ((banknote100 * 100 + banknote10 * 10 + banknote1) >= money) {
+            if ((banknote100 - money / 100) >= 0) {
+                banknote100 = money / 100;
                 money %= 100;
             } else {
-                money = money - hundreds * 100;
+                money = money - banknote100 * 100;
             }
-            if ((tens - money / 10) >= 0) {
-                tens = money / 10;
+            if ((banknote10 - money / 10) >= 0) {
+                banknote10 = money / 10;
                 money %= 10;
             } else {
-                money -= tens * 10;
+                money -= banknote10 * 10;
             }
-            if ((ones - money) >= 0) {
-                ones = money;
+            if ((banknote1 - money) >= 0) {
+                banknote1 = money;
             }
-            System.out.println("100 USD = " + hundreds + " total = " + hundreds * 100 +
-                    "\n10 USD = " + tens + " total = " + tens * 10 +
-                    "\n1 USD = " + ones + " total = " + ones
-            );
+            System.out.println("Банкнот номиналом 100USD = " + banknote100 + " их общая сумма = " + banknote100 * 100 +
+                    "\nБанкнот номиналом 10USD = " + banknote10 + " их общая сумма = " + banknote10 * 10 +
+                    "\nБанкнот номиналом 1USD = " + banknote1 + " их общая сумма = " + banknote1);
         } else {
              System.out.println("В банкомате недостаточно средств");
         }
