@@ -3,20 +3,19 @@ import java.util.*;
 public class CyclesTheme {
     public static void main(String[] args) {
         System.out.println("#1. Подсчет суммы четных и нечетных чисел");
-        int totalEven = 0;
-        int totalOdd = 0;
+        int sumEvenNumbers = 0;
+        int sumOddNumbers = 0;
         int start = -10;
         do {
             if (start % 2 == 0) {
-                totalEven += start;
+                sumEvenNumbers += start;
             } else {
-                totalOdd += start;
+                sumOddNumbers += start;
             }
             start++;
-        } while (start < 21);
-        System.out.println("В промежутке [-10; 21] сумма четных чисел = " + totalEven +
-                ", сумма нечетных = " + totalOdd
-        );
+        } while (start <= 21);
+        System.out.println("В промежутке [-10; 21] сумма четных чисел = " + sumEvenNumbers +
+                ", сумма нечетных = " + sumOddNumbers);
 
         System.out.println("\n#2. Вывод чисел в интервале (min и max) в порядке убывания");
         int a = 10;
@@ -35,50 +34,49 @@ public class CyclesTheme {
             min = c;
         }
         for (int i = max - 1; i > min; i--) {
-            System.out.printf("%4d", i);
+            System.out.printf("%d", i);
         }
 
         System.out.println("\n\n#3. Вывод реверсивного числа и суммы его цифр");
         int num = 1234;
-        int total = 0;
-        while (num != 0) {
-            total += num % 10;
-            System.out.print(num % 10);
+        int copyNum = num;
+        int sum = 0;
+        while (num > 0) {
+            int digit = num % 10;
+            sum += digit;
+            System.out.print(digit);
             num /= 10;
         }
-        System.out.println("\nСумма цифр цисла 1234 = " + total);
+        System.out.println("\nСумма цифр числа " + copyNum + " = " + sum);
 
         System.out.println("\n#4. Вывод чисел на консоль в несколько строк");
-        int begin = 1;
+        start = 1;
         int end = 24;
         int countString = 0;
-        for (int i = begin + 1; i <= end; i += 2) {
+        for (int i = start + 1; i <= end; i += 2) {
             System.out.printf("%4d", i);
             countString++;
-            if (countString == end / 2 && countString % 5 != 0) {
-                int size = 5 - countString % 5;
-                for (int j = 0; j < size; j++) {
-                    System.out.printf("%4d", 0);
-                }
-            }
             if (i % 5 == 0) {
                 System.out.println();
             }
+        }
+        int countZero = 5 - countString % 5;
+        for (int j = 0; j < countZero; j++) {
+            System.out.printf("%4d", 0);
         }
 
         System.out.println("\n#5. Проверка количества двоек на четность/нечетность");
         int num1 = 3242592;
         int copyNum1 = num1;
         int count = 0;
-        while (num1 != 0) {
+        while (num1 > 0) {
             if (num1 % 10 == 2) {
                 count++;
             }
             num1 /= 10;
         }
         System.out.println("Число " + copyNum1 + " содержит " + count +
-                " (" + (count % 2 == 0 ? "четное" : "нечетное") + ") количество двоек"
-        );
+                " (" + (count % 2 == 0 ? "четное" : "нечетное") + ") количество двоек");
 
         System.out.println("\n#6. Отображение фигур в консоли");
         System.out.println("Прямоугольник");
