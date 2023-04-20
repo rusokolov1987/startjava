@@ -178,7 +178,7 @@ public class CyclesTheme {
             } else if (i == 1) {
                 System.out.printf("%3s", "|");
             } else if (i == 2) {
-                System.out.println("---------------------------");
+                System.out.printf("%s", "---------------------------\n");
                 System.out.printf("%d%2s", i, "|");
             }
             for (int j = 2; j <= 9; j++) {
