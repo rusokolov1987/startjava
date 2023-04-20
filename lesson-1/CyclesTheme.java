@@ -170,7 +170,8 @@ public class CyclesTheme {
                 "неявляется") + " счастливым");
 
         System.out.println("\n#10. Вывод таблицы умножения Пифагора");
-        System.out.printf("%20s", "ТАБЛИЦА ПИФАГОРА\n");
+        System.out.printf("%10s%6s%5s", "ТАБЛИЦА", " " ,"ПИФАГОРА");
+        System.out.println();
         for (int i = 1; i <= 9; i++) {
             if (i != 1 && i != 2) {
                 System.out.printf("%d%2s", i, "|");
