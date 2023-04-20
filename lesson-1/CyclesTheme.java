@@ -152,21 +152,21 @@ public class CyclesTheme {
         System.out.println("\n#9. Определение, является ли число счастливым");
         int happyNumber = 313123;
         int num4 = happyNumber % 1000;
-        int num6 = num4;
+        int copyNum4 = num4;
         happyNumber /= 1000;
         int num3 = happyNumber;
-        int num5 = num3;
-        int sumNumber1 = 0;
-        int sumNumber2 = 0;
+        int copyNum3 = num3;
+        int sumNum3 = 0;
+        int sumNum4 = 0;
         while (num3 > 0 && num4 > 0) {
-            sumNumber1 += num3 % 10;
-            sumNumber2 += num4 % 10;
+            sumNum3 += num3 % 10;
+            sumNum4 += num4 % 10;
             num3 /= 10;
             num4 /= 10;
         }
-        System.out.println("Сумма цифр " + num5 + " = " + sumNumber1);
-        System.out.println("Сумма цифр " + num6 + " = " + sumNumber2);
-        System.out.println("Число " + (sumNumber1 == sumNumber2 ? "является" :
+        System.out.println("Сумма цифр " + copyNum3 + " = " + sumNum3);
+        System.out.println("Сумма цифр " + copyNum4 + " = " + sumNum4);
+        System.out.println("Число " + (sumNum3 == sumNum4 ? "является" :
                 "неявляется") + " счастливым");
 
         System.out.println("\n#10. Вывод таблицы умножения Пифагора");
