@@ -122,13 +122,13 @@ public class CyclesTheme {
         } while (size > 0);
 
         System.out.println("\n#7. Отображение ASCII-символов");
-        System.out.printf("%-5s%-5s%n", "Dec", "Char");
+        System.out.printf("%5s%8s%n", "Dec", "Char");
         for (int i = 0; i <= 122; i++) {
             if (i % 2 != 0 && i < 48) {
-                System.out.printf("%-5d%-5c%n", i, i);
+                System.out.printf("%5d%8c%n", i, i);
             }
             if (i >= 97 && i <= 122 && i % 2 == 0) {
-                System.out.printf("%-5d%-5c%n", i, i);
+                System.out.printf("%5d%8c%n", i, i);
             }
         }
 
