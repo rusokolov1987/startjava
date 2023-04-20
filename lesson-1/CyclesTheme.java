@@ -123,7 +123,7 @@ public class CyclesTheme {
 
         System.out.println("\n#7. Отображение ASCII-символов");
         System.out.printf("%-5s%-5s%n", "Dec", "Char");
-        for (int i = 0; i <= 127; i++) {
+        for (int i = 0; i <= 122; i++) {
             if (i % 2 != 0 && i < 48) {
                 System.out.printf("%-5d%-5c%n", i, i);
             }
