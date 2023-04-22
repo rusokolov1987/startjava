@@ -4,8 +4,9 @@ public class GuessNumber {
     public static void main(String[] args) {
         Random random = new Random();
         int randomNumber = random.nextInt(100) + 1;
-        int playerNumber = 100;
+        int playerNumber = 1;
         while (true) {
+            playerNumber = (playerNumber + playerNumber) % 101;
             if (randomNumber == playerNumber) {
                 System.out.println("Вы победили!");
                 break;
@@ -15,7 +16,6 @@ public class GuessNumber {
             } else {
                 System.out.println("число = " + playerNumber + " больше того, что загадал компьютер");
             }
-            playerNumber = (65539 + playerNumber) % 101;
         }
     }
 }
