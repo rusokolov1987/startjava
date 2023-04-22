@@ -6,13 +6,14 @@ public class GuessNumber {
         int randomNumber = random.nextInt(100) + 1;
         int playerNumber = 100;
         while (true) {
-            if (randomNumber > playerNumber) {
-                System.out.println("число = " + playerNumber + " меньше того, что загадал компьютер");
-            } else if (randomNumber < playerNumber) {
-                System.out.println("число = " + playerNumber + " больше того, что загадал компьютер");
-            } else {
+            if (randomNumber == playerNumber) {
                 System.out.println("Вы победили!");
                 break;
+            }
+            if (randomNumber > playerNumber) {
+                System.out.println("число = " + playerNumber + " меньше того, что загадал компьютер");
+            } else {
+                System.out.println("число = " + playerNumber + " больше того, что загадал компьютер");
             }
             playerNumber = (65539 + playerNumber) % 101;
         }
