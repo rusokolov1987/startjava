@@ -51,7 +51,7 @@ public class CyclesTheme {
 
         System.out.println("\n#4. Вывод чисел на консоль в несколько строк");
         int start = 1;
-        int end = 30;
+        int end = 23;
         int countString = 0;
         for (int i = start; i <= end; i += 2) {
             System.out.printf("%4d", i);
@@ -61,12 +61,15 @@ public class CyclesTheme {
             }
         }
         int countZero = 0;
-        if (end % 5 != 0) {
+        if (end % 5 > 0) {
             countZero = 5 - countString % 5;
         }
         for (int i = 0; i < countZero; i++) {
             System.out.printf("%4d", 0);
-        }   
+            if (i == countZero - 1) {
+                System.out.println();
+            }
+        }
 
         System.out.println("\n#5. Проверка количества двоек на четность/нечетность");
         int num1 = 3242592;
@@ -124,7 +127,7 @@ public class CyclesTheme {
         System.out.println("\n#7. Отображение ASCII-символов");
         System.out.printf("%5s%8s%n", "Dec", "Char");
         for (int i = 0; i <= 122; i++) {
-            if (i % 2 != 0 && i < 48) {
+            if (i % 2 > 0 && i < 48) {
                 System.out.printf("%5d%8c%n", i, i);
             }
             if (i >= 97 && i <= 122 && i % 2 == 0) {
@@ -151,22 +154,22 @@ public class CyclesTheme {
 
         System.out.println("\n#9. Определение, является ли число счастливым");
         int happyNumber = 313123;
-        int num4 = happyNumber % 1000;
-        int copyNum4 = num4;
+        int halfHappyNum1 = happyNumber % 1000;
+        int copyNum4 = halfHappyNum1;
         happyNumber /= 1000;
-        int num3 = happyNumber;
-        int copyNum3 = num3;
-        int sumNum3 = 0;
-        int sumNum4 = 0;
-        while (num3 > 0 && num4 > 0) {
-            sumNum3 += num3 % 10;
-            sumNum4 += num4 % 10;
-            num3 /= 10;
-            num4 /= 10;
+        int halfHappyNum2 = happyNumber;
+        int copyNum3 = halfHappyNum2;
+        int sumDigit1 = 0;
+        int sumDigit2 = 0;
+        while (halfHappyNum2 > 0) {
+            sumDigit1 += halfHappyNum2 % 10;
+            sumDigit2 += halfHappyNum1 % 10;
+            halfHappyNum2 /= 10;
+            halfHappyNum1 /= 10;
         }
-        System.out.println("Сумма цифр " + copyNum3 + " = " + sumNum3);
-        System.out.println("Сумма цифр " + copyNum4 + " = " + sumNum4);
-        System.out.println("Число " + (sumNum3 == sumNum4 ? "является" :
+        System.out.println("Сумма цифр " + copyNum3 + " = " + sumDigit1);
+        System.out.println("Сумма цифр " + copyNum4 + " = " + sumDigit2);
+        System.out.println("Число " + (sumDigit1 == sumDigit2 ? "является" :
                 "неявляется") + " счастливым");
 
         System.out.println("\n#10. Вывод таблицы умножения Пифагора");
