@@ -19,6 +19,10 @@ public class Person {
         System.out.println("Сижу ");
     }
 
+    public void run() {
+        System.out.println("Бегу");
+    }
+
     public void talk() {
         System.out.println("Говорю");
     }
