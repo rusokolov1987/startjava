@@ -1,13 +1,13 @@
 public class Person {
     String sex;
     String name;
-    int weight;
+    double weight;
     int age;
 
     public Person() {
         this.sex = "male";
         this.name = "Alex";
-        this.weight = 84;
+        this.weight = 84.5;
         this.age = 33;
     }
 
