@@ -1,16 +1,9 @@
 public class Person {
 
-    String sex;
-    String name;
-    double weight;
-    int age;
-
-    public Person() {
-        sex = "male";
-        name = "Alex";
-        weight = 84.5;
-        age = 33;
-    }
+    String sex = "male";
+    String name = "Alex";
+    double weight = 84.5;
+    int age = 33;
 
     public void move() {
         System.out.println("Иду");
