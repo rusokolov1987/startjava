@@ -1,4 +1,5 @@
 public class Person {
+    
     String sex;
     String name;
     double weight;
