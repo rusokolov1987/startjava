@@ -1,15 +1,15 @@
 public class Person {
-    
+
     String sex;
     String name;
     double weight;
     int age;
 
     public Person() {
-        this.sex = "male";
-        this.name = "Alex";
-        this.weight = 84.5;
-        this.age = 33;
+        sex = "male";
+        name = "Alex";
+        weight = 84.5;
+        age = 33;
     }
 
     public void move() {
