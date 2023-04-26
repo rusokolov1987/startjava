@@ -154,22 +154,22 @@ public class CyclesTheme {
 
         System.out.println("\n#9. Определение, является ли число счастливым");
         int happyNumber = 313123;
-        int halfHappyNum1 = happyNumber % 1000;
-        int copyNum4 = halfHappyNum1;
+        int rightHalf = happyNumber % 1000;
+        int copyRightHalf = rightHalf;
         happyNumber /= 1000;
-        int halfHappyNum2 = happyNumber;
-        int copyNum3 = halfHappyNum2;
-        int sumDigit1 = 0;
-        int sumDigit2 = 0;
-        while (halfHappyNum2 > 0) {
-            sumDigit1 += halfHappyNum2 % 10;
-            sumDigit2 += halfHappyNum1 % 10;
-            halfHappyNum2 /= 10;
-            halfHappyNum1 /= 10;
+        int leftHalf = happyNumber;
+        int copyHalfLeft = leftHalf;
+        int sumLeftHalf = 0;
+        int sumRightHalf = 0;
+        while (leftHalf > 0) {
+            sumLeftHalf += leftHalf % 10;
+            sumRightHalf += rightHalf % 10;
+            leftHalf /= 10;
+            rightHalf /= 10;
         }
-        System.out.println("Сумма цифр " + copyNum3 + " = " + sumDigit1);
-        System.out.println("Сумма цифр " + copyNum4 + " = " + sumDigit2);
-        System.out.println("Число " + (sumDigit1 == sumDigit2 ? "является" :
+        System.out.println("Сумма цифр " + copyHalfLeft + " = " + sumLeftHalf);
+        System.out.println("Сумма цифр " + copyRightHalf + " = " + sumRightHalf);
+        System.out.println("Число " + (sumRightHalf == sumLeftHalf ? "является" :
                 "неявляется") + " счастливым");
 
         System.out.println("\n#10. Вывод таблицы умножения Пифагора");
