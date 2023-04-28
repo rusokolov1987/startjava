@@ -1,5 +1,5 @@
 public class Calculator {
-    public void showCalculationresult(int num1, char sign, int num2) {
+    public void showCalculationResult(int num1, char sign, int num2) {
         int result = 0;
         boolean checkOperator = true;
         switch (sign) {
