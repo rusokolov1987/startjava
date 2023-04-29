@@ -1,7 +1,6 @@
 public class Calculator {
-    public void showCalculationResult(int num1, char sign, int num2) {
-        int result = 0;
-        boolean checkOperator = true;
+    public void calculate(int num1, char sign, int num2) {
+        int result = 1;
         switch (sign) {
             case '+':
                 result = num1 + num2;
@@ -29,23 +28,13 @@ public class Calculator {
                     result = num1;
                     break;
                 }
-                if (num2 == 0) {
-                    result = 1;
-                    break;
-                }
-                int multiply = 1;
                 for (int i = 0; i < num2; i++) {
-                    multiply *= num1;
+                    result *= num1;
                 }
-                result = multiply;
                 break;
             default:
-                checkOperator = false;
                 System.out.println("Такой операции нет!");
-                break;
-        }
-        if (!checkOperator) {
-            return;
+                return;
         }
         if (sign == '%' | sign == '/' && num2 == 0) {
             System.out.println("Деление на ноль!");
