@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class CalculatorTest {
 
@@ -20,9 +20,6 @@ public class CalculatorTest {
             }
             System.out.println("Вы хотите продолжить вычисления? (да/нет)");
             question = scanner.nextLine();
-            if (question.toLowerCase().equals("нет")) {
-                break;
-            }
         }
     }
 }
