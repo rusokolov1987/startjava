@@ -37,8 +37,6 @@ public class GuessNumber {
             }
             result = true;
             return;
-        } else {
-            result = false;
         }
         if (number > player1.getNumber()) {
             System.out.println("Число загаданное игроком " + player1.getName() +
