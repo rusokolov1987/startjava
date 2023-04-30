@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Random;
+import java.util.Scanner;
 
 public class GuessNumber {
     private Player player1;
@@ -20,6 +21,11 @@ public class GuessNumber {
     }
 
     public void startGame() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(player1.getName() + " введите число");
+        player1.setNumber(scanner.nextInt());
+        System.out.println(player2.getName() + " введите число");
+        player2.setNumber(scanner.nextInt());
         if (number == player1.getNumber() || number == player2.getNumber()) {
             if (player1.getNumber() == player2.getNumber()) {
                 System.out.println("Игроки " + player1.getName() + " и " +

@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class GuessNumberTest {
     public static void main(String[] args) {
@@ -9,21 +9,15 @@ public class GuessNumberTest {
         System.out.println("Второй игрок, введите имя");
         Player player2 = new Player(scanner.nextLine());
         GuessNumber guess = new GuessNumber(player1, player2);
-        while(!player1.getQuestion().toLowerCase().equals("нет") || !player2.getQuestion().toLowerCase().equals("нет")) {
-            if (player1.getQuestion().toLowerCase().equals("да") && player2.getQuestion().toLowerCase().equals("да") && !guess.getResult()) {
-                System.out.println(player1.getName() + " введите число");
-                player1.setNumber(scanner.nextInt());
-                System.out.println(player2.getName() + " введите число");
-                player2.setNumber(scanner.nextInt());
+        String question = "да";
+        while(!question.toLowerCase().equals("нет")) {
+            if (question.toLowerCase().equals("да")) {
                 guess.startGame();
             }
-            if (guess.getResult()) {
-                System.out.println("Игрок " + player1.getName() + ", вы хотите продолжить игру? (да/нет)");
-                player1.setQuestion(scanner.nextLine());
-                scanner.nextLine();
-                System.out.println("Игрок " + player2.getName() + ", вы хотите продолжить игру? (да/нет)");
-                player2.setQuestion(scanner.nextLine());
-                if (player1.getQuestion().toLowerCase().equals("да") && player2.getQuestion().toLowerCase().equals("да")) {
+            if (guess.getResult() && !question.toLowerCase().equals("нет")) {
+                System.out.println("Вы хотите продолжить игру? (да/нет)");
+                question = scanner.nextLine();
+                if (question.toLowerCase().equals("да")){
                     guess = new GuessNumber(player1, player2);
                 }
             }
