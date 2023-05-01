@@ -5,9 +5,9 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
-        String question = "да";
-        while (!question.toLowerCase().equals("нет")) {
-            if (question.toLowerCase().equals("да")) {
+        String option = "да";
+        while (!option.toLowerCase().equals("нет")) {
+            if (option.toLowerCase().equals("да")) {
                 System.out.println("Введите первое число");
                 int num1 = scanner.nextInt();
                 System.out.println("Введите знак математической операции");
@@ -19,7 +19,7 @@ public class CalculatorTest {
                 scanner.nextLine();
             }
             System.out.println("Вы хотите продолжить вычисления? (да/нет)");
-            question = scanner.nextLine();
+            option = scanner.nextLine();
         }
     }
 }
