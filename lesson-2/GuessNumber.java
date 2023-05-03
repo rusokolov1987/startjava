@@ -18,29 +18,18 @@ public class GuessNumber {
         do {
             System.out.println(player1.getName() + " введите число");
             player1.setNumber(scanner.nextInt());
-            showMessage(player1);
             if (isGuessed(player1)) {
                 break;
             }
             System.out.println(player2.getName() + " введите число");
             player2.setNumber(scanner.nextInt());
-            showMessage(player2);
-            if (isGuessed(player2)) {
-                break;
-            }
-        } while (!isGuessed(player1) && !isGuessed(player2));
+        } while (!isGuessed(player2));
     }
 
     private boolean isGuessed(Player player) {
         if (guessNumber == player.getNumber()) {
-            return true;
-        }
-        return false;
-    }
-
-    private void showMessage(Player player) {
-        if (guessNumber == player.getNumber()) {
             System.out.println(player.getName() + ", вы победили");
+            return true;
         } else if (guessNumber > player.getNumber()) {
             System.out.println("Число загаданное игроком " + player.getName() + " меньше того, что" +
                     " загадал компьютер");
@@ -48,5 +37,6 @@ public class GuessNumber {
             System.out.println("Число загаданное игроком " + player.getName() + " больше того, что" +
                     " загадал компьютер");
         }
+        return false;
     }
 }
