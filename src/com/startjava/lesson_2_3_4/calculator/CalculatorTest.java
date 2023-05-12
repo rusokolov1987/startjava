@@ -1,5 +1,5 @@
-package com.startjava.lesson_2.calculator;
-import com.startjava.lesson_2.calculator.Calculator;
+package com.startjava.lesson_2_3_4.calculator;
+import com.startjava.lesson_2_3_4.calculator.Calculator;
 import java.util.Scanner;
 
 public class CalculatorTest {

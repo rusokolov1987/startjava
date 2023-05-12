@@ -1,5 +1,5 @@
-package com.startjava.lesson_2.animal;
-import com.startjava.lesson_2.animal.Wolf;
+package com.startjava.lesson_2_3_4.animal;
+import com.startjava.lesson_2_3_4.animal.Wolf;
 
 public class WolfTest {
     public static void main(String[] args) {
