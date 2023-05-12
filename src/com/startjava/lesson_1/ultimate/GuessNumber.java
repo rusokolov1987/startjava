@@ -1,4 +1,5 @@
 package com.startjava.lesson_1.ultimate;
+
 import java.util.*;
 
 public class GuessNumber {
