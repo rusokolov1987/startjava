@@ -16,33 +16,33 @@ public class ArrayTheme {
         System.out.println("#1. Реверс значений массива.");
         int[] intArray = {4, 2, 1, 3, 7, 6, 5};
         System.out.println("Исходный массив:");
-        show(intArray, 0);
+        show(intArray);
         System.out.println("\nРеверсивный массив:");
         int length = intArray.length;
-        show(intArray, length);
+        for (int i = 0; i < length - i; i++) {
+            for (int j = length - 1 - i; j >= length - 1 - i; j--) {
+                int temp = intArray[j];
+                intArray[j] = intArray[i];
+                intArray[i] = temp; 
+            }
+        }
+        show(intArray);
     }
 
     private static void multiplayElement() {
         System.out.println("\n\n#2. Вывод произведения элементов массива.");
-        int[] digitArray = new int[10];
-        int length = digitArray.length;
+        int[] multipliers = new int[10];
+        int length = multipliers.length;
         for (int i = 0; i < length; i++) {
-            digitArray[i] = i;
+            multipliers[i] = i;
         }
         int result = 1;
-        int index = 0;
-        for (int i = 0; i < length; i++) {
-            if (digitArray[i] > 0 && digitArray[i] < 9) {
-                result *= digitArray[i];
-                System.out.print(digitArray[i]);
-                System.out.print((i != length - 2 ? " * " : " = " + result + "\n"));
-            } else {
-                index = (digitArray[i] == 0) ? i : 0;
-                if (digitArray[i] == 9) {
-                    System.out.println("0 = digitArray[" + index + "]\n9 = digitArray[" + i + "]");
-                }
-            }
+        for (int i = 1; i < length - 1; i++) {
+            result *= multipliers[i];
+            System.out.print(multipliers[i]);
+            System.out.print((i != length - 2 ? " * " : " = " + result + "\n"));
         }
+        System.out.println("multipliers[0] = " + multipliers[0] + "\nmultipliers[9] = " + multipliers[9]);
     }
 
     private static void deleteElements() {
@@ -54,10 +54,10 @@ public class ArrayTheme {
             doubleArray[i] = Math.random();
         }
         show(doubleArray);
-        double midleArrayElement = doubleArray[length / 2];
+        double middleCellValue = doubleArray[length / 2];
         int count = 0;
         for (int i = 0; i < length; i++) {
-            if (doubleArray[i] > midleArrayElement) {
+            if (doubleArray[i] > middleCellValue) {
                 doubleArray[i] = 0;
                 count++;
             }
@@ -69,16 +69,14 @@ public class ArrayTheme {
 
     private static void reverseAlphabet() {
         System.out.println("\n#4. Вывод элементов массива лесенкой в обратном порядке.");
-        String[] strArray = new String[26];
-        int letter = 65;
-        int length = strArray.length;
+        String[] alphabet = new String[26];
+        int length = alphabet.length;
         for (int i = 0; i < length; i++) {
-            strArray[i] = String.valueOf((char) letter);
-            letter++;
+            alphabet[i] = (char) ('A' + i) + "";
         }
         for (int i = 0; i < length; i++) {
             for (int j = length - 1; j >= length - i - 1; j--) {
-                System.out.print(strArray[j]);
+                System.out.print(alphabet[j]);
             }
             System.out.println();
         }
@@ -86,25 +84,30 @@ public class ArrayTheme {
 
     private static void generateArrayElement() {
         System.out.println("\n#5. Генерация уникальных чисел.");
-        int[] intArray = new int[30];
-        int length = intArray.length;
+        int[] uniquNumbers = new int[30];
+        int length = uniquNumbers.length;
         for (int i = 0; i < length; i++) {
-            intArray[i] = 60 + (int) (Math.random() * 40);
-            for (int j = 0; j < i;) {
-                if (intArray[i] == intArray[j]) {
-                    intArray[i] = 60 + (int) (Math.random() * 40);
+            for (int j = 0; j <= i;) {
+                if (uniquNumbers[i] == 0) {
+                    uniquNumbers[i] = 60 + (int) (Math.random() * 40);
+                } 
+                if (i == j) {
+                    break;
+                }
+                if (uniquNumbers[i] == uniquNumbers[j]) {
+                    uniquNumbers[i] = 0;
                     j = 0;
                 } else {
                     j++;
                 }
             }
         }
-        Arrays.sort(intArray);
+        Arrays.sort(uniquNumbers);
         for (int i = 0; i < length; i++) {
             if (i > 0 && i % 10 == 0) {
                 System.out.println();
             }
-            System.out.printf("%3d", intArray[i]);
+            System.out.printf("%3d", uniquNumbers[i]);
         }
     }
 
@@ -131,15 +134,9 @@ public class ArrayTheme {
         System.out.println();
     }
 
-    private static void show(int[] array, int start) {
-        if (start > 0) {
-            for (int i = start - 1; i >= 0; i--) {
-                System.out.printf("%2d", array[i]);
-            }   
-        } else {
-            for (int element : array) {
-                System.out.printf("%2d", element);
-            }
+    private static void show(int[] array) {
+        for (int element : array) {
+            System.out.printf("%2d", element);
         }
     }
 
@@ -154,7 +151,7 @@ public class ArrayTheme {
 
     private static void show(String[] array) {
         for (String element : array) {
-            System.out.printf("%s%s", element);
+            System.out.printf("%s", element);
         }
     }
 }
