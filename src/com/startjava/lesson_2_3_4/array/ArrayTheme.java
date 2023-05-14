@@ -84,30 +84,30 @@ public class ArrayTheme {
 
     private static void generateArrayElement() {
         System.out.println("\n#5. Генерация уникальных чисел.");
-        int[] uniquNumbers = new int[30];
-        int length = uniquNumbers.length;
+        int[] uniqueNumbers = new int[30];
+        int length = uniqueNumbers.length;
         for (int i = 0; i < length; i++) {
             for (int j = 0; j <= i;) {
-                if (uniquNumbers[i] == 0) {
-                    uniquNumbers[i] = 60 + (int) (Math.random() * 40);
+                if (uniqueNumbers[i] == 0) {
+                    uniqueNumbers[i] = 60 + (int) (Math.random() * 40);
                 } 
                 if (i == j) {
                     break;
                 }
-                if (uniquNumbers[i] == uniquNumbers[j]) {
-                    uniquNumbers[i] = 0;
+                if (uniqueNumbers[i] == uniqueNumbers[j]) {
+                    uniqueNumbers[i] = 0;
                     j = 0;
                 } else {
                     j++;
                 }
             }
         }
-        Arrays.sort(uniquNumbers);
+        Arrays.sort(uniqueNumbers);
         for (int i = 0; i < length; i++) {
             if (i > 0 && i % 10 == 0) {
                 System.out.println();
             }
-            System.out.printf("%3d", uniquNumbers[i]);
+            System.out.printf("%3d", uniqueNumbers[i]);
         }
     }
 
