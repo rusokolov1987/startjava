@@ -114,23 +114,38 @@ public class ArrayTheme {
     private static void copyNonEmptyLines() {
         System.out.println("\n\n#6. Копирование не пустых строк.");
         String[] strings = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
-        int size = 0;
         show(strings);
+        int size = 0;
         for (String element : strings) {
             if (!element.isBlank()) {
                 size++;
             }
         }
+        if (size == 0) {
+            return;
+        }
         System.out.println();
-        String[] array = new String[size];
-        int i = 0;
-        for (String element : strings) {
-            if (!element.isBlank()) {
-                array[i] = element;
-                i++;
+        String[] nonEmptyStrings = new String[size];
+        int length = strings.length;
+        int k = 0;
+        int start = 0;
+        for (int i = 0; i < length; i++) {
+            int count = 0;
+            if (!strings[i].isBlank()) {
+                start = i;
+                for (int j = i; j < length; j++) {
+                    if (!strings[j].isBlank()) {
+                        count++;
+                    } else {
+                        i = j;
+                        break;
+                    }
+                }
+                System.arraycopy(strings, start, nonEmptyStrings, k, count);
+                k += count;
             }
         }
-        show(array);
+        show(nonEmptyStrings);
         System.out.println();
     }
 
@@ -151,7 +166,7 @@ public class ArrayTheme {
 
     private static void show(String[] array) {
         for (String element : array) {
-            System.out.printf("%s", element);
+            System.out.printf("%s%s%s%s", "\"", element, "\"", " ");
         }
     }
 }
