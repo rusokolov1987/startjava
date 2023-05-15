@@ -17,15 +17,13 @@ public class ArrayTheme {
         int[] intArray = {4, 2, 1, 3, 7, 6, 5};
         System.out.println("Исходный массив:");
         show(intArray);
-        System.out.println("\nРеверсивный массив:");
         int length = intArray.length;
         for (int i = 0; i < length - i; i++) {
-            for (int j = length - 1 - i; j >= length - 1 - i; j--) {
-                int temp = intArray[j];
-                intArray[j] = intArray[i];
-                intArray[i] = temp; 
-            }
+            int temp = intArray[length - i - 1];
+            intArray[length - i - 1] = intArray[i];
+            intArray[i] = temp; 
         }
+        System.out.println("\nРеверсивный массив:");
         show(intArray);
     }
 
@@ -69,10 +67,10 @@ public class ArrayTheme {
 
     private static void reverseAlphabet() {
         System.out.println("\n#4. Вывод элементов массива лесенкой в обратном порядке.");
-        String[] alphabet = new String[26];
+        char[] alphabet = new char[26];
         int length = alphabet.length;
         for (int i = 0; i < length; i++) {
-            alphabet[i] = (char) ('A' + i) + "";
+            alphabet[i] = (char) ('A' + i);
         }
         for (int i = 0; i < length; i++) {
             for (int j = length - 1; j >= length - i - 1; j--) {
@@ -86,20 +84,11 @@ public class ArrayTheme {
         System.out.println("\n#5. Генерация уникальных чисел.");
         int[] uniqueNumbers = new int[30];
         int length = uniqueNumbers.length;
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j <= i;) {
-                if (uniqueNumbers[i] == 0) {
-                    uniqueNumbers[i] = 60 + (int) (Math.random() * 40);
-                } 
-                if (i == j) {
-                    break;
-                }
-                if (uniqueNumbers[i] == uniqueNumbers[j]) {
-                    uniqueNumbers[i] = 0;
-                    j = 0;
-                } else {
-                    j++;
-                }
+        for (int i = 0; i < length;) {
+            int generateNumber = 60 + (int) (Math.random() * 40);
+            if (!isExists(uniqueNumbers, generateNumber)) {
+                uniqueNumbers[i] = generateNumber;
+                i++;
             }
         }
         Arrays.sort(uniqueNumbers);
@@ -127,23 +116,21 @@ public class ArrayTheme {
         System.out.println();
         String[] nonEmptyStrings = new String[size];
         int length = strings.length;
-        int k = 0;
+        int position = 0;
         int start = 0;
         for (int i = 0; i < length; i++) {
             int count = 0;
-            if (!strings[i].isBlank()) {
-                start = i;
-                for (int j = i; j < length; j++) {
-                    if (!strings[j].isBlank()) {
-                        count++;
-                    } else {
-                        i = j;
-                        break;
-                    }
+            start = i;
+            for (int j = i; j < length; j++) {
+                if (!strings[j].isBlank()) {
+                    count++;
+                } else {
+                    i = j;
+                    break;
                 }
-                System.arraycopy(strings, start, nonEmptyStrings, k, count);
-                k += count;
             }
+            System.arraycopy(strings, start, nonEmptyStrings, position, count);
+            position += count;
         }
         show(nonEmptyStrings);
         System.out.println();
@@ -160,7 +147,7 @@ public class ArrayTheme {
             if (i == 8) {
                 System.out.println();
             }
-            System.out.printf("%10.3f", array[i]);
+            System.out.printf("%6.3f", array[i]);
         }
     }
 
@@ -168,5 +155,14 @@ public class ArrayTheme {
         for (String element : array) {
             System.out.printf("%s%s%s%s", "\"", element, "\"", " ");
         }
+    }
+
+    private static boolean isExists(int[] array, int number) {
+        for (int element : array) {
+            if (element == number) {
+                return true;
+            }
+        }
+        return false;
     }
 }
