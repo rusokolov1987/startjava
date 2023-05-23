@@ -26,8 +26,8 @@ public class Calculator {
                 result = num1 % num2;
                 break;
             case '^':
-                    result = Math.pow(num1,num2);
-                    break;
+                result = Math.pow(num1,num2);
+                break;
             default:
                 System.out.println("Такой операции нет!");
                 return 0.0;
