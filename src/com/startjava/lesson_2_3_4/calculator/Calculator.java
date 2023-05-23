@@ -5,10 +5,10 @@ public class Calculator {
         double result = 1.0;
         switch (sign) {
             case '+':
-                result = num1 + num2;
+                result = Math.addExact(num1, num2);
                 break;
             case '-':
-                result = num1 - num2;
+                result = Math.subtractExact(num1, num2);
                 break;
             case '/':
                 if (num2 == 0) {
