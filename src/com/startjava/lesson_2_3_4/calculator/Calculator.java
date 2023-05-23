@@ -1,7 +1,11 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
-    public double calculate(int num1, char sign, int num2) {
+    public double calculate(String expression) {
+        String[] expressionSymbols = expression.split(" ");
+        int num1 = Integer.parseInt(expressionSymbols[0]);
+        int num2 = Integer.parseInt(expressionSymbols[2]);
+        char sign = expressionSymbols[1].charAt(0);
         double result = 1.0;
         switch (sign) {
             case '+':

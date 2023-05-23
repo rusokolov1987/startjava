@@ -13,10 +13,8 @@ public class CalculatorTest {
             if (option.toLowerCase().equals("да")) {
                 System.out.println("Введите математическое выражение");
                 String expression = scanner.nextLine();
-                String[] expressionSymbols = expression.split(" ");
-                double result = calculator.calculate(Integer.parseInt(expressionSymbols[0]), expressionSymbols[1].charAt(0),
-                        Integer.parseInt(expressionSymbols[2]));
-                System.out.print(expressionSymbols[0] + " " + expressionSymbols[1] + " " + expressionSymbols[2] + " = ");
+                double result = calculator.calculate(expression);
+                System.out.print(expression + " = ");
                 if ((result - (int) result) > 0) {
                     System.out.printf("%.3f\n", result);
                 } else {
