@@ -26,14 +26,8 @@ public class Calculator {
                 result = num1 % num2;
                 break;
             case '^':
-                if (num1 == 1 || num1 == 0) {
                     result = Math.pow(num1,num2);
                     break;
-                }
-                for (int i = 0; i < num2; i++) {
-                    result *= num1;
-                }
-                break;
             default:
                 System.out.println("Такой операции нет!");
                 return 0.0;
