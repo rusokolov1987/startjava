@@ -11,15 +11,17 @@ public class CalculatorTest {
         String option = "да";
         while (!option.toLowerCase().equals("нет")) {
             if (option.toLowerCase().equals("да")) {
-                System.out.println("Введите первое число");
-                int num1 = scanner.nextInt();
-                System.out.println("Введите знак математической операции");
-                scanner.nextLine();
-                String sign = scanner.nextLine();
-                System.out.println("Введите второе число");
-                int num2 = scanner.nextInt();
-                calculator.calculate(num1, sign.charAt(0), num2);
-                scanner.nextLine();
+                System.out.println("Введите математическое выражение");
+                String expression = scanner.nextLine();
+                String[] expressionSymbols = expression.split(" ");
+                double result = calculator.calculate(Integer.parseInt(expressionSymbols[0]), expressionSymbols[1].charAt(0),
+                        Integer.parseInt(expressionSymbols[2]));
+                System.out.print(expressionSymbols[0] + " " + expressionSymbols[1] + " " + expressionSymbols[2] + " = ");
+                if ((result - (int) result) > 0) {
+                    System.out.printf("%.3f\n", result);
+                } else {
+                    System.out.printf("%d\n", (int) result);
+                }
             }
             System.out.println("Вы хотите продолжить вычисления? (да/нет)");
             option = scanner.nextLine();

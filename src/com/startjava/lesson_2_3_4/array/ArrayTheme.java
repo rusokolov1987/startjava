@@ -19,9 +19,10 @@ public class ArrayTheme {
         show(intArray);
         int length = intArray.length;
         for (int i = 0; i < length - i; i++) {
-            int temp = intArray[length - i - 1];
-            intArray[length - i - 1] = intArray[i];
-            intArray[i] = temp; 
+            length--;
+            int temp = intArray[length];
+            intArray[length] = intArray[i];
+            intArray[i] = temp;
         }
         System.out.println("\nРеверсивный массив:");
         show(intArray);
