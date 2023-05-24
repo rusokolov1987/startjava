@@ -2,43 +2,36 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
     public double calculate(String expression) {
-        String[] expressionSymbols = expression.split(" ");
-        int num1 = Integer.parseInt(expressionSymbols[0]);
-        int num2 = Integer.parseInt(expressionSymbols[2]);
-        char sign = expressionSymbols[1].charAt(0);
-        double result = 1.0;
+        String[] elements = expression.split(" ");
+        int num1 = Integer.parseInt(elements[0]);
+        int num2 = Integer.parseInt(elements[2]);
+        char sign = elements[1].charAt(0);
         switch (sign) {
             case '+':
-                result = Math.addExact(num1, num2);
-                break;
+                return Math.addExact(num1, num2);
             case '-':
-                result = Math.subtractExact(num1, num2);
-                break;
+                return Math.subtractExact(num1, num2);
             case '/':
                 if (num2 == 0) {
                     break;
                 }
-                result = (double) num1 / num2;
-                break;
+                return  (double) num1 / num2;
             case '*':
-                result = Math.multiplyExact(num1, num2);
-                break;
+                return Math.multiplyExact(num1, num2);
             case '%':
                 if (num2 == 0) {
                     break;
                 }
-                result = num1 % num2;
-                break;
+                return num1 % num2;
             case '^':
-                result = Math.pow(num1,num2);
-                break;
+                return Math.pow(num1,num2);
             default:
-                System.out.println("Такой операции нет!");
+                System.out.println("Данная операция не поддерживается!");
                 return 0.0;
         }
         if (sign == '%' | sign == '/' && num2 == 0) {
             System.out.println("Деление на ноль!");
         }
-        return result;
+        return 0.0;
     }
 }

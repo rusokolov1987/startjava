@@ -1,6 +1,5 @@
 package com.startjava.lesson_2_3_4.calculator;
 
-import com.startjava.lesson_2_3_4.calculator.Calculator;
 import java.util.Scanner;
 
 public class CalculatorTest {
@@ -14,15 +13,19 @@ public class CalculatorTest {
                 System.out.println("Введите математическое выражение");
                 String expression = scanner.nextLine();
                 double result = calculator.calculate(expression);
-                System.out.print(expression + " = ");
-                if ((result - (int) result) > 0) {
-                    System.out.printf("%.3f\n", result);
-                } else {
-                    System.out.printf("%d\n", (int) result);
-                }
+                show(expression, result);
             }
             System.out.println("Вы хотите продолжить вычисления? (да/нет)");
             option = scanner.nextLine();
+        }
+    }
+
+    public static void show(String expression, double result) {
+        System.out.print(expression + " = ");
+        if ((result - (int) result) > 0) {
+            System.out.printf("%.3f\n", result);
+        } else {
+            System.out.printf("%d\n", (int) result);
         }
     }
 }
