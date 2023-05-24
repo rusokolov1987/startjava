@@ -1,31 +1,31 @@
 package com.startjava.lesson_2_3_4.calculator;
 
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class CalculatorTest {
 
     public static void main(String[] args) {
-        Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
         String option = "да";
         while (!option.toLowerCase().equals("нет")) {
             if (option.toLowerCase().equals("да")) {
                 System.out.println("Введите математическое выражение");
                 String expression = scanner.nextLine();
-                double result = calculator.calculate(expression);
-                show(expression, result);
+                try {
+                    double result = Calculator.calculate(expression);
+                    show(expression, result);
+                    System.out.println("Вы хотите продолжить вычисления? (да/нет)");
+                    option = scanner.nextLine();
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage() + " Введите корректные значения!");
+                }
             }
-            System.out.println("Вы хотите продолжить вычисления? (да/нет)");
-            option = scanner.nextLine();
         }
     }
 
     public static void show(String expression, double result) {
-        System.out.print(expression + " = ");
-        if ((result - (int) result) > 0) {
-            System.out.printf("%.3f\n", result);
-        } else {
-            System.out.printf("%d\n", (int) result);
-        }
+        System.out.println(expression + " = " +
+                ((result - (int) result > 0) ? String.format("%.3f", result) : String.format("%d", (int) result)));
     }
 }
