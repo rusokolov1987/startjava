@@ -17,11 +17,6 @@ public class CalculatorTest {
         }
     }
 
-    private static void show(String expression, double result) {
-        System.out.println(expression + " = " +
-                ((result - (int) result > 0) ? String.format("%.3f", result) : String.format("%d", (int) result)));
-    }
-
     private static void launch() {
         Scanner scanner = new Scanner(System.in);
         String expression = scanner.nextLine();
@@ -32,5 +27,10 @@ public class CalculatorTest {
             System.out.println(e.getMessage() + " Введите корректное математическое выражение!");
             launch();
         }
+    }
+
+    private static void show(String expression, double result) {
+        System.out.println(expression + " = " +
+                ((result - (int) result > 0) ? String.format("%.3f", result) : String.format("%d", (int) result)));
     }
 }
