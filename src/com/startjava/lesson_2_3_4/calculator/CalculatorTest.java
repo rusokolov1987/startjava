@@ -9,6 +9,7 @@ public class CalculatorTest {
         String option = "да";
         while (!option.toLowerCase().equals("нет")) {
             if (option.toLowerCase().equals("да")) {
+                System.out.println("Введите математическое выражение");
                 launch();
             }
             System.out.println("Вы хотите продолжить вычисления? (да/нет)");
@@ -23,7 +24,6 @@ public class CalculatorTest {
 
     private static void launch() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите математическое выражение");
         String expression = scanner.nextLine();
         try {
             double result = Calculator.calculate(expression);
