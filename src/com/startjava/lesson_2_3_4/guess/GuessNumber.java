@@ -1,6 +1,5 @@
 package com.startjava.lesson_2_3_4.guess;
 
-import com.startjava.lesson_2_3_4.guess.Player;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,21 +18,33 @@ public class GuessNumber {
         Random random = new Random();
         guessNumber = random.nextInt(100) + 1;
         do {
-            System.out.println(player1.getName() + " введите число");
-            player1.setNumber(scanner.nextInt());
-            if (isGuessed(player1)) {
+            if (player1.getSize() < 9) {
+                System.out.println(player1.getName() + " введите число");
+                player1.addNumber(scanner.nextInt());
+                if (isGuessed(player1)) {
+                    break;
+                }
+            } else {
+                System.out.println("У игрока " + player1.getName() + " закончились попытки!");
+            }
+            if (player2.getSize() < 9) {
+                System.out.println(player2.getName() + " введите число");
+                player2.addNumber(scanner.nextInt());
+            } else {
+                System.out.println("У игрока " + player2.getName() + " закончились попытки!");
+            }
+            if (player1.getSize() == 10 && player2.getSize() == 10) {
                 break;
             }
-            System.out.println(player2.getName() + " введите число");
-            player2.setNumber(scanner.nextInt());
         } while (!isGuessed(player2));
     }
 
     private boolean isGuessed(Player player) {
-        if (guessNumber == player.getNumber()) {
-            System.out.println(player.getName() + ", вы победили");
+        if (guessNumber == player.getNumber(player.getSize() - 1)) {
+            System.out.println("Игрок с именем " + player.getName() + " угадал число " + guessNumber + " c " +
+                    player.getSize() + " попытки.");
             return true;
-        } else if (guessNumber > player.getNumber()) {
+        } else if (guessNumber > player.getNumber(player.getSize() - 1)) {
             System.out.println("Число загаданное игроком " + player.getName() + " меньше того, что" +
                     " загадал компьютер");
         } else {

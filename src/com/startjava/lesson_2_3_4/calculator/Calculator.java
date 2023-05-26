@@ -12,7 +12,7 @@ public class Calculator {
             throw new RuntimeException("Введенные числа должны быть целыми!");
         }
         char sign = elements[1].charAt(0);
-        double result = switch (sign) {
+        return switch (sign) {
             case '+'-> Math.addExact(num1, num2);
             case '-' -> Math.subtractExact(num1, num2);
             case '/' -> {
@@ -31,6 +31,5 @@ public class Calculator {
             case '^' -> Math.pow(num1,num2);
             default -> throw new RuntimeException("Данная операция не поддерживается!");
         };
-        return result;
     }
 }
