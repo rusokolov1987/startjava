@@ -69,7 +69,7 @@ public class GuessNumber {
 
     private boolean isGuessed(Player player) {
         return (guessNumber == player.getNumber()) ? isWin(player) : (guessNumber > player.getNumber()) ?
-                isBigNumber(player) : isLittleNumber(player);
+                isLittleNumber(player) : isBigNumber(player);
     }
 
     private boolean isWin(Player player) {
@@ -78,13 +78,13 @@ public class GuessNumber {
         return true;
     }
 
-    private boolean isBigNumber(Player player) {
+    private boolean isLittleNumber(Player player) {
         System.out.println("Число загаданное игроком " + player.getName() + " меньше того, что" +
                 " загадал компьютер");
         return false;
     }
 
-    private boolean isLittleNumber(Player player) {
+    private boolean isBigNumber(Player player) {
         System.out.println("Число загаданное игроком " + player.getName() + " больше того, что" +
                 " загадал компьютер");
         return false;
