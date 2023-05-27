@@ -5,12 +5,11 @@ import java.util.Arrays;
 public class Player {
     private String name;
     private int[] numbers;
-    private int size;
+    private int attempt;
 
     public Player(String name) {
         this.name = name;
         this.numbers = new int[10];
-        this.size = 0;
     }
 
     public String getName() {
@@ -18,24 +17,28 @@ public class Player {
     }
 
     public void addNumber(int element) {
-        numbers[size] = element;
-        size++;
+        if (element > 0 && element <= 100) {
+            numbers[attempt] = element;
+            attempt++;
+            return;
+        }
+        throw  new RuntimeException("Вы ввели число не входящее в полуинтервал (0, 100]");
     }
 
-    public int getNumber(int index) {
-        return numbers[index];
+    public int getNumber() {
+        return numbers[attempt - 1];
     }
 
-    public int getSize() {
-        return size;
+    public int getAttempt() {
+        return attempt;
     }
 
     public int[] getNumbers() {
-        return numbers;
+        return Arrays.copyOf(numbers, attempt);
     }
 
-    public void cleanNumbers() {
-        Arrays.fill(numbers, 0, size, 0);
-        size = 0;
+    public void clear() {
+        Arrays.fill(numbers, 0, attempt, 0);
+        attempt = 0;
     }
 }
