@@ -19,8 +19,7 @@ public class GuessNumber {
         guessNumber = random.nextInt(100) + 1;
         do {
             if (player1.getSize() < 9) {
-                System.out.println(player1.getName() + " введите число");
-                player1.addNumber(scanner.nextInt());
+                requestNumber(player1, scanner);
                 if (isGuessed(player1)) {
                     break;
                 }
@@ -28,8 +27,7 @@ public class GuessNumber {
                 System.out.println("У игрока " + player1.getName() + " закончились попытки!");
             }
             if (player2.getSize() < 9) {
-                System.out.println(player2.getName() + " введите число");
-                player2.addNumber(scanner.nextInt());
+                requestNumber(player2, scanner);
             } else {
                 System.out.println("У игрока " + player2.getName() + " закончились попытки!");
             }
@@ -37,6 +35,11 @@ public class GuessNumber {
                 break;
             }
         } while (!isGuessed(player2));
+    }
+
+    private static void requestNumber(Player player, Scanner scanner) {
+        System.out.println(player.getName() + " введите число");
+        player.addNumber(scanner.nextInt());
     }
 
     private boolean isGuessed(Player player) {

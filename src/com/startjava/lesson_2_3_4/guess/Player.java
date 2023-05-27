@@ -1,8 +1,9 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.Arrays;
+
 public class Player {
     private String name;
-    private int number;
     private int[] numbers;
     private int size;
 
@@ -27,5 +28,14 @@ public class Player {
 
     public int getSize() {
         return size;
+    }
+
+    public int[] getNumbers() {
+        return numbers;
+    }
+
+    public void cleanNumbers() {
+        Arrays.fill(numbers, 0, size, 0);
+        size = 0;
     }
 }

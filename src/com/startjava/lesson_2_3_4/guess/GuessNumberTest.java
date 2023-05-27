@@ -24,12 +24,19 @@ public class GuessNumberTest {
             }
             System.out.println("\nВы хотите продолжить игру? (да/нет)");
             option = scanner.nextLine();
+            cleanGame(player1, player2);
         }
     }
 
     private static void show(Player player) {
-        for (int i = 0; i < player.getSize(); i++) {
-            System.out.printf("%d%s", player.getNumber(i), " ");
+        int[] partPlayerNumbers = Arrays.copyOf(player.getNumbers(), player.getSize());
+        for (int element : partPlayerNumbers) {
+            System.out.printf("%5d", element);
         }
+    }
+
+    private static void cleanGame(Player player1, Player player2) {
+        player1.cleanNumbers();
+        player2.cleanNumbers();
     }
 }
