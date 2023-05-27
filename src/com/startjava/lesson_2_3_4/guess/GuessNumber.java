@@ -17,13 +17,15 @@ public class GuessNumber {
         guessNumber = random.nextInt(100) + 1;
         playersDraw(players, 3, random);
         do {
-            inputNumber(players[0], scanner);
-            if (isGuessed(players[0])) {
-                break;
+            if (inputNumber(players[0], scanner)) {
+                if (isGuessed(players[0])) {
+                    break;
+                }
             }
-            inputNumber(players[1], scanner);
-            if (isGuessed(players[1])) {
-                break;
+            if (inputNumber(players[1], scanner)) {
+                if (isGuessed(players[1])) {
+                    break;
+                }
             }
             if (!inputNumber(players[2], scanner)) {
                 break;
