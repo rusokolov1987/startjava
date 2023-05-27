@@ -68,23 +68,23 @@ public class GuessNumber {
     }
 
     private boolean isGuessed(Player player) {
-        return (guessNumber == player.getNumber()) ? showMessageWin(player) : (guessNumber > player.getNumber()) ?
-                showMessageBigNumber(player) : showMessageLittleNumber(player);
+        return (guessNumber == player.getNumber()) ? isWin(player) : (guessNumber > player.getNumber()) ?
+                isBigNumber(player) : isLittleNumber(player);
     }
 
-    private boolean showMessageWin(Player player) {
+    private boolean isWin(Player player) {
         System.out.println("Игрок с именем " + player.getName() + " угадал число " + guessNumber + " c " +
                 player.getAttempt() + " попытки.");
         return true;
     }
 
-    private boolean showMessageBigNumber(Player player) {
+    private boolean isBigNumber(Player player) {
         System.out.println("Число загаданное игроком " + player.getName() + " меньше того, что" +
                 " загадал компьютер");
         return false;
     }
 
-    private boolean showMessageLittleNumber(Player player) {
+    private boolean isLittleNumber(Player player) {
         System.out.println("Число загаданное игроком " + player.getName() + " больше того, что" +
                 " загадал компьютер");
         return false;
