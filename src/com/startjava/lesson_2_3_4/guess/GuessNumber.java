@@ -17,26 +17,15 @@ public class GuessNumber {
         guessNumber = random.nextInt(100) + 1;
         playersDraw(players, 3, random);
         do {
-            if (players[0].getAttempt() <= 9) {
-                inputNumber(players[0], scanner);
-                if (isGuessed(players[0])) {
-                    break;
-                }
-            } else {
-                System.out.println("У игрока " + players[0].getName() + " закончились попытки!");
+            inputNumber(players[0], scanner);
+            if (isGuessed(players[0])) {
+                break;
             }
-            if (players[1].getAttempt() <= 9) {
-                inputNumber(players[1], scanner);
-                if (isGuessed(players[1])) {
-                    break;
-                }
-            } else {
-                System.out.println("У игрока " + players[1].getName() + " закончились попытки!");
+            inputNumber(players[1], scanner);
+            if (isGuessed(players[1])) {
+                break;
             }
-            if (players[2].getAttempt() <= 9) {
-                inputNumber(players[2], scanner);
-            } else {
-                System.out.println("У игрока " + players[2].getName() + " закончились попытки!");
+            if (!inputNumber(players[2], scanner)) {
                 break;
             }
         } while (!isGuessed(players[2]));
@@ -60,12 +49,15 @@ public class GuessNumber {
         return playersDraw(players, count - 1, random);
     }
 
-    private void inputNumber(Player player, Scanner scanner) {
+    private boolean inputNumber(Player player, Scanner scanner) {
         while (true) {
             try {
-                System.out.println(player.getName() + " введите число");
-                player.addNumber(scanner.nextInt());
-                break;
+                if (player.getAttempt() <= 9) {
+                    System.out.println(player.getName() + " введите число");
+                    player.addNumber(scanner.nextInt());
+                    return true;
+                }
+                System.out.println("У игрока " + player.getName() + " закончились попытки!");
             } catch (Exception e) {
                 System.out.println(e.getMessage() + "! Введите число из полуинтервала (0, 100]!");
             }
