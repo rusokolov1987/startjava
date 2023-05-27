@@ -58,6 +58,7 @@ public class GuessNumber {
                     return true;
                 }
                 System.out.println("У игрока " + player.getName() + " закончились попытки!");
+                return false;
             } catch (Exception e) {
                 System.out.println(e.getMessage() + "! Введите число из полуинтервала (0, 100]!");
             }
