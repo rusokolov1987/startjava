@@ -52,19 +52,17 @@ public class GuessNumber {
     }
 
     private boolean inputNumber(Player player, Scanner scanner) {
-        while (true) {
+        while (player.getAttempt() <= 9) {
             try {
-                if (player.getAttempt() <= 9) {
-                    System.out.println(player.getName() + " введите число");
-                    player.addNumber(scanner.nextInt());
-                    return true;
-                }
-                System.out.println("У игрока " + player.getName() + " закончились попытки!");
-                return false;
+                System.out.println(player.getName() + " введите число");
+                player.addNumber(scanner.nextInt());
+                return true;
             } catch (Exception e) {
                 System.out.println(e.getMessage() + "! Введите число из полуинтервала (0, 100]!");
             }
         }
+        System.out.println("У игрока " + player.getName() + " закончились попытки!");
+        return false;
     }
 
     private boolean isGuessed(Player player) {
