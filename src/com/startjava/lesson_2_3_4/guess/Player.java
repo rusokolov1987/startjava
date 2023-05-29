@@ -6,6 +6,7 @@ public class Player {
     private String name;
     private int[] numbers;
     private int attempt;
+    private int countWin;
 
     public Player(String name) {
         this.name = name;
@@ -16,13 +17,13 @@ public class Player {
         return name;
     }
 
-    public void addNumber(int element) {
-        if (element > 0 && element <= 100) {
-            numbers[attempt] = element;
+    public void addNumber(int number) throws RuntimeException {
+        if (number > 0 && number <= 100) {
+            numbers[attempt] = number;
             attempt++;
             return;
         }
-        throw  new RuntimeException("Вы ввели число не входящее в полуинтервал (0, 100]");
+        throw new RuntimeException("Вы ввели число не входящее в полуинтервал (0, 100]");
     }
 
     public int getNumber() {
@@ -35,6 +36,14 @@ public class Player {
 
     public int[] getNumbers() {
         return Arrays.copyOf(numbers, attempt);
+    }
+
+    public void setCountWin(int countWins) {
+        this.countWin = countWins;
+    }
+
+    public int getCountWin() {
+        return countWin;
     }
 
     public void clear() {

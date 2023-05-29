@@ -6,58 +6,72 @@ import java.util.Scanner;
 public class GuessNumber {
     private Player[] players;
     private int guessNumber;
+    private static final int COUNT_ROUND = 3;
+    private static final int COUNT_ATTEMPT = 10;
 
-    public GuessNumber(Player...player) {
+    public GuessNumber(Player... player) {
         this.players = player;
     }
 
     public void launch() {
-        Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
-        guessNumber = random.nextInt(100) + 1;
-        playersDraw(players, 3, random);
-        do {
-            if (inputNumber(players[0], scanner)) {
-                if (isGuessed(players[0])) {
-                    break;
-                }
-            }
-            if (inputNumber(players[1], scanner)) {
-                if (isGuessed(players[1])) {
-                    break;
-                }
-            }
-            if (!inputNumber(players[2], scanner)) {
-                break;
-            }
-        } while (!isGuessed(players[2]));
-        for (Player player : players) {
-            show(player);
-        }
-        cleanGame(players);
+        gameProgress();
+        System.out.println("Результаты игры после " + COUNT_ROUND + "-х раундов:");
+        showResultGame(players);
+        cleanGame();
     }
 
-    private Player[] playersDraw(Player[] players, int count, Random random) {
-        if (count == 0) {
-            return players;
+    private void gameProgress() {
+        Random random = new Random();
+        int countRound = 1;
+        while (countRound <= COUNT_ROUND) {
+            System.out.println(countRound + "-й рануд игры!");
+            guessNumber = random.nextInt(100) + 1;
+            shufflePlayers(random);
+            for (int i = 0; i < COUNT_ATTEMPT; i++) {
+                boolean check = false;
+                for (Player player : players) {
+                    if (isGame(player)) {
+                        check = true;
+                        break;
+                    }
+                }
+                if (check) {
+                    break;
+                }
+            }
+            System.out.println("Результаты (раунд " + countRound + "-й):");
+            showResultRound();
+            countRound++;
+            cleanRound();
         }
+    }
+
+    private Player[] shufflePlayers(Random random) {
         int length = players.length;
+        int border = length;
         for (int i = length - 1; i >= 0; i--) {
-            int randomPlayer = random.nextInt(count);
+            int randomPlayer = random.nextInt(border--);
             Player temp = players[i];
             players[i] = players[randomPlayer];
             players[randomPlayer] = temp;
         }
-        return playersDraw(players, count - 1, random);
+        return players;
+    }
+
+    private boolean isGame(Player player) {
+        if (inputNumber(player, new Scanner(System.in))) {
+            return isGuessed(player);
+        }
+        return false;
     }
 
     private boolean inputNumber(Player player, Scanner scanner) {
-        while (player.getAttempt() <= 9) {
+        while (player.getAttempt() < COUNT_ATTEMPT) {
             try {
                 System.out.println(player.getName() + " введите число");
                 player.addNumber(scanner.nextInt());
                 return true;
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 System.out.println(e.getMessage() + "! Введите число из полуинтервала (0, 100]!");
             }
         }
@@ -66,8 +80,11 @@ public class GuessNumber {
     }
 
     private boolean isGuessed(Player player) {
-        return (guessNumber == player.getNumber()) ? isWin(player) : (guessNumber > player.getNumber()) ?
-                isLittleNumber(player) : isBigNumber(player);
+        if (guessNumber == player.getNumber()) {
+            player.setCountWin(player.getCountWin() + 1);
+            return isWin(player);
+        }
+        return (guessNumber > player.getNumber()) ? isLittleNumber(player) : isBigNumber(player);
     }
 
     private boolean isWin(Player player) {
@@ -88,17 +105,50 @@ public class GuessNumber {
         return false;
     }
 
-    private void show(Player player) {
-        int[] partPlayerNumbers = player.getNumbers();
-        System.out.println("Результаты игрока " + player.getName() + ":");
-        for (int number : partPlayerNumbers) {
-            System.out.printf("%5d", number);
+    private void showResultRound() {
+        for (Player player : players) {
+            int[] partPlayerNumbers = player.getNumbers();
+            System.out.println("Результаты игрока " + player.getName() + ":");
+            for (int number : partPlayerNumbers) {
+                System.out.printf("%5d", number);
+            }
+            System.out.println();
         }
-        System.out.println();
     }
 
-    private void cleanGame(Player[] players) {
+    private void showResultGame(Player[] players) {
+        int length = players.length;
+        int swapCount = 0;
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length - i - 1; j++) {
+                if (players[j].getCountWin() > players[j + 1].getCountWin()) {
+                    Player temp = players[j + 1];
+                    players[j + 1] = players[j];
+                    players[j] = temp;
+                    swapCount++;
+                }
+            }
+        }
         for (Player player : players) {
+            System.out.println(player.getName() + " " + player.getCountWin());
+        }
+        if (swapCount == 0) {
+            System.out.println("Победитель не выявлен, т.к. игроки выиграли по разу в каждом раунде!");
+            return;
+        }
+        System.out.println("В игре победил игрок " + players[length - 1].getName() + ", который в " + COUNT_ROUND +
+                "-х раундах одержал " + players[length - 1].getCountWin() + " побед!");
+    }
+
+    private void cleanRound() {
+        for (Player player : players) {
+            player.clear();
+        }
+    }
+
+    private void cleanGame() {
+        for (Player player : players) {
+            player.setCountWin(0);
             player.clear();
         }
     }
