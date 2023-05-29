@@ -22,9 +22,9 @@ public class GuessNumber {
 
     private void gameProgress() {
         Random random = new Random();
-        int countRound = 1;
-        while (countRound <= COUNT_ROUND) {
-            System.out.println(countRound + "-й рануд игры!");
+        int step = 1;
+        while (step <= COUNT_ROUND) {
+            System.out.println(step + "-й рануд игры!");
             guessNumber = random.nextInt(100) + 1;
             shufflePlayers(random);
             for (int i = 0; i < COUNT_ATTEMPT; i++) {
@@ -39,9 +39,9 @@ public class GuessNumber {
                     break;
                 }
             }
-            System.out.println("Результаты (раунд " + countRound + "-й):");
+            System.out.println("Результаты (раунд " + step + "-й):");
             showResultRound();
-            countRound++;
+            step++;
             cleanRound();
         }
     }
