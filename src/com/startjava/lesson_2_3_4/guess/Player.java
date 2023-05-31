@@ -3,9 +3,9 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Arrays;
 
 public class Player {
-    private static final int NUMBERS_SIZE = 10;
-    private static final int LOW_NUMBER_LIMIT = 0;
-    private static final int HIGH_NUMBER_LIMIT = 100;
+    private static final int CAPACITY = 10;
+    private static final int LOW_LIMIT = 0;
+    private static final int HIGH_LIMIT = 100;
     private String name;
     private int[] numbers;
     private int attempt;
@@ -13,7 +13,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.numbers = new int[NUMBERS_SIZE];
+        numbers = new int[CAPACITY];
     }
 
     public String getName() {
@@ -21,7 +21,7 @@ public class Player {
     }
 
     public void addNumber(int number) {
-        if (number > LOW_NUMBER_LIMIT && number <= HIGH_NUMBER_LIMIT) {
+        if (number > LOW_LIMIT && number <= HIGH_LIMIT) {
             numbers[attempt] = number;
             attempt++;
             return;
@@ -41,8 +41,12 @@ public class Player {
         return Arrays.copyOf(numbers, attempt);
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void incrementScore() {
+        score++;
+    }
+
+    public void cleanScore() {
+        score = 0;
     }
 
     public int getScore() {

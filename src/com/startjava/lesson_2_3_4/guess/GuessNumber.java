@@ -7,7 +7,7 @@ public class GuessNumber {
     private static final int ROUNDS_LIMIT = 3;
     private static final int ATTEMPTS_LIMIT = 10;
     private static final int RANDOM_RANGE = 100;
-    private static final int RANDOM_RANGE_LIMIT = 1;
+    private static final int REGULATOR_LIMIT = 1;
     private Player[] players;
     private int guessNumber;
 
@@ -18,7 +18,7 @@ public class GuessNumber {
     public void launch() {
         startGamePlay();
         System.out.println("Результаты игры после " + ROUNDS_LIMIT + "-х раундов:");
-        showResultGame(players);
+        showGameResult();
         cleanGame();
     }
 
@@ -27,12 +27,12 @@ public class GuessNumber {
         int step = 1;
         while (step <= ROUNDS_LIMIT) {
             System.out.println(step + "-й рануд игры!");
-            guessNumber = random.nextInt(RANDOM_RANGE) + RANDOM_RANGE_LIMIT;
+            guessNumber = random.nextInt(RANDOM_RANGE) + REGULATOR_LIMIT;
             System.out.println("Победителем жеребьевки становится игрок - " + shufflePlayers(random).getName());
             for (int i = 0; i < ATTEMPTS_LIMIT; i++) {
                 boolean check = false;
                 for (Player player : players) {
-                    if (isNumber(player)) {
+                    if (virificatEntryData(player)) {
                         check = true;
                         break;
                     }
@@ -42,7 +42,7 @@ public class GuessNumber {
                 }
             }
             System.out.println("Результаты (раунд " + step + "-й):");
-            showResultRound();
+            showRoundResult();
             step++;
             cleanRound();
         }
@@ -59,7 +59,7 @@ public class GuessNumber {
         return players[0];
     }
 
-    private boolean isNumber(Player player) {
+    private boolean virificatEntryData(Player player) {
         if (inputNumber(player, new Scanner(System.in))) {
             return isGuessed(player);
         }
@@ -82,28 +82,28 @@ public class GuessNumber {
 
     private boolean isGuessed(Player player) {
         if (guessNumber == player.getNumber()) {
-            player.setScore(player.getScore() + 1);
+            player.incrementScore();
             System.out.println("Игрок с именем " + player.getName() + " угадал число " + guessNumber + " c " +
                     player.getAttempt() + " попытки.");
             return true;
         }
         System.out.println("Число загаданное игроком "+ player.getName() + ((guessNumber > player.getNumber()) ?
-                " меньше того, что" : " больше того, что") + " загадал компьютер!");
+                " меньше" : " больше") + " того, что загадал компьютер!");
         return false;
     }
 
-    private void showResultRound() {
+    private void showRoundResult() {
         for (Player player : players) {
-            int[] partPlayerNumbers = player.getNumbers();
+            int[] numbers = player.getNumbers();
             System.out.println("Результаты игрока " + player.getName() + ":");
-            for (int number : partPlayerNumbers) {
+            for (int number : numbers) {
                 System.out.printf("%5d", number);
             }
             System.out.println();
         }
     }
 
-    private void showResultGame(Player[] players) {
+    private void showGameResult() {
         int length = players.length;
         int swapCount = 0;
         for (int i = 0; i < length; i++) {
@@ -135,7 +135,7 @@ public class GuessNumber {
 
     private void cleanGame() {
         for (Player player : players) {
-            player.setScore(0);
+            player.cleanScore();
             player.clear();
         }
     }
