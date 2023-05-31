@@ -32,7 +32,7 @@ public class GuessNumber {
             for (int i = 0; i < ATTEMPTS_LIMIT; i++) {
                 boolean check = false;
                 for (Player player : players) {
-                    if (virificatEntryData(player)) {
+                    if (checkInputNumber(player)) {
                         check = true;
                         break;
                     }
@@ -59,7 +59,7 @@ public class GuessNumber {
         return players[0];
     }
 
-    private boolean virificatEntryData(Player player) {
+    private boolean checkInputNumber(Player player) {
         if (inputNumber(player, new Scanner(System.in))) {
             return isGuessed(player);
         }
