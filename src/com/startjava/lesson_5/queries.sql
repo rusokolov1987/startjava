@@ -37,7 +37,7 @@ SELECT *
   );
 
  \echo Средний вес роботов
- SELECT AVG(weight) AS avg_weight
+ SELECT ROUND(AVG(weight), 3) AS avg_weight
    FROM jaegers;
 
 \echo Увеличение kaijukill на 1 у роботов, которые не уничтоженные
