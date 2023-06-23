@@ -6,8 +6,8 @@ CREATE DATABASE jaegers OWNER postgres;
 
 DROP TABLE IF EXISTS jaegers;
 
-CREATE TABLE jaegers(
-    jaegers_id SERIAL PRIMARY KEY ,
+CREATE TABLE jaegers (
+    jaegers_id SERIAL PRIMARY KEY,
     model_name VARCHAR(20) UNIQUE,
     mark INT,
     height DECIMAL(6, 3),
