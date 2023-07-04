@@ -1,7 +1,5 @@
 package com.startjava.graduation.bookshelf;
 
-import java.util.Arrays;
-
 public class Bookshelf {
     private static final int CAPACITY = 10;
     private int countBook;
