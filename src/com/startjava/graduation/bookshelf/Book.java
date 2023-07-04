@@ -1,15 +1,27 @@
 package com.startjava.graduation.bookshelf;
 
 public class Book {
-    String author;
-    String title;
-    int published;
-    int lengthInfo;
+    private String author;
+    private String title;
+    private int published;
+    private int lengthInfo;
 
     public Book(String author, String title, int published) {
         this.author = author;
         this.title = title;
         this.published = published;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getPublished() {
+        return published;
     }
 
     @Override

@@ -4,27 +4,87 @@ import java.util.Scanner;
 
 public class BookshelfTest {
     public static void main(String[] args) {
-        menu();
+        String info = """
+                1. Добавить
+                2. Удалить
+                3. Найти
+                4. Показать все книги
+                5. Количество книг в шкафу
+                6. Количество пустых полок
+                7. Очитсить шкаф
+                8. Выйти
+                """;
+        menu(info);
     }
 
-    private static void menu() {
-        System.out.println("Шкаф пуст! Вы можете добавить первую книгу!");
-        System.out.println("Вы в меню. Выберите операцию которую хотите выполнить.");
-        System.out.println("1. Добавить.\n2. Удалить.\n3. Найти.\n4. Показать все книги.\n5. Количество книг в шкафу.\n" +
-                "6. Количество пустых полок. \n7. Очистить полку.\n8. Завершить");
-        int command = Integer.parseInt(input("Введите номер операции!"));
+    private static void menu(String info) {
         Bookshelf bookshelf = new Bookshelf();
-        switch (command) {
-            case 1:
-                    bookshelf.addBook(createBook());
+        while (true) {
+            if (bookshelf.getCountBook() == 0) {
+                System.out.println("Шкаф пуст! Вы можете добавить первую книгу!");
+            } else {
+                System.out.println("В шкафу " + bookshelf.getCountBook() + " книг и сивободно " +
+                        bookshelf.getEmptyShelf() + " полок.");
+                showBookshelf(bookshelf);
+            }
+            int command;
+            while (true) {
+                System.out.printf("%10s", "Меню\n");
+                System.out.println(info);
+                try {
+                    command = Integer.parseInt(input("Введите номер операции!"));
                     break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
+                } catch (NumberFormatException ex) {
+                    System.out.println("Такой операции не существует!");
+                }
+            }
+            switch (command) {
+                case 1:
+                    try {
+                        bookshelf.addBook(new Book(input("Введите автора"), input("Введите название книги"),
+                                Integer.parseInt(input("Введите дату публикации"))));
+                        System.out.println("Книга добавлена в шкаф!");
+                    } catch (RuntimeException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 2:
+                    try {
+                        if (bookshelf.deleteBook(input("Введите название книги, которую хотите убрать с полки."))) {
+                            System.out.println("Книга успешно удалена!");
+                        }
+                    } catch (RuntimeException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                    break;
+                case 3:
+                    try {
+                        Book book = bookshelf.searchBook(input("Введите название книги, которую хотите найти в шкафу."));
+                        System.out.println("Книга найдена: " + book);
+                    } catch (RuntimeException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                    break;
+                case 4:
+                    showBookshelf(bookshelf);
+                    break;
+                case 5:
+                    System.out.println("Количество книг в шкафу: " + bookshelf.getCountBook());
+                    break;
+                case 6:
+                    System.out.println("Количество пустых полок в шкафу: " + bookshelf.getEmptyShelf());
+                    break;
+                case 7:
+                    bookshelf.clean();
+                    System.out.println("Шкаф пуст!");
+                    break;
+                case 8:
+                    System.out.println("Вы вышли из программы!");
+                    System.exit(0);
+                default:
+                    System.out.println("Такой операции не существует!");
+            }
+            keyPressed();
         }
     }
 
@@ -33,7 +93,25 @@ public class BookshelfTest {
         return new Scanner(System.in).nextLine();
     }
 
-    private static Book createBook() {
-        return new Book(input("Введите автора"), input("Введите название книги"), Integer.parseInt(input("Введите дату публикации")));
+    private static void showBookshelf(Bookshelf bookshelf) {
+        if (bookshelf.getCountBook() == 0) {
+            System.out.println("Шкаф пуст!");
+            return;
+        }
+        for (int i = 0; i < bookshelf.getCountBook(); i++) {
+            System.out.printf("%s%s%s", "|", bookshelf.showBook(i) , "|\n");
+            System.out.printf("%s", "|------------------------------------------|\n");
+        }
+        System.out.printf("%s", "|                                          |\n");
+    }
+
+    private static void keyPressed() {
+        while (true) {
+            System.out.println("Нажмите Enter для продолжения работы!");
+            String enter = new Scanner(System.in).nextLine();
+            if (enter.isEmpty()) {
+                break;
+            }
+        }
     }
 }

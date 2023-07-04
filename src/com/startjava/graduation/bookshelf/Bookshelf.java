@@ -1,38 +1,45 @@
 package com.startjava.graduation.bookshelf;
 
-public class Bookshelf {
-    private int countBook;
-    private Book[] books = new Book[10];
+import java.util.Arrays;
 
-    public void addBook(Book book) {
-        this.books[countBook++] = book;
+public class Bookshelf {
+    private static final int CAPACITY = 10;
+    private int countBook;
+    private Book[] books;
+
+    public Bookshelf() {
+        books = new Book[CAPACITY];
     }
 
-    public boolean deleteBook(Book book) {
-        if (!searchBook(book)) {
-            return false;
+    public boolean addBook(Book book) {
+        if (countBook < CAPACITY) {
+            books[countBook++] = book;
+            return true;
         }
-        for (int i = 0; i < books.length; i++) {
-            if (books[i].equals(book)) {
+        throw new RuntimeException("Книга не может быть добавлена, т.к. все полки в шкафу заняты!");
+    }
 
-            }
+    public boolean deleteBook(String title) {
+        int index = find(title);
+        if (index == -1) {
+            throw new RuntimeException("Книга не найдена и не может быть удалена");
         }
+        System.arraycopy(books, index + 1, books, index, books.length - index - 1);
+        countBook--;
         return true;
     }
 
-    public boolean searchBook(Book book) {
+    public Book searchBook(String title) {
         for (Book volume : books) {
-            if (volume.equals(book)) {
-                return true;
+            if (volume != null && volume.getTitle().toLowerCase().equals(title.toLowerCase())) {
+                return volume;
             }
         }
-        return false;
+        throw new RuntimeException("Книга не найдена");
     }
 
-    public void showAllBooks() {
-        for (Book book : books) {
-            System.out.println(book);
-        }
+    public Book showBook(int index) {
+        return books[index];
     }
 
     public int getCountBook() {
@@ -43,7 +50,17 @@ public class Bookshelf {
         return books.length - countBook;
     }
 
-    public void clean(int shelf) {
+    public void clean() {
+        countBook = 0;
+        books = new Book[10];
+    }
 
+    private int find(String title) {
+        for (int i = 0; i < countBook; i++) {
+            if (books[i].getTitle().toLowerCase().equals(title.toLowerCase())) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
