@@ -20,10 +20,10 @@ public class BookshelfTest {
     private static void menu(String info) {
         Bookshelf bookshelf = new Bookshelf();
         while (true) {
-            if (bookshelf.getCountBook() == 0) {
+            if (bookshelf.getCountBooks() == 0) {
                 System.out.println("Шкаф пуст! Вы можете добавить первую книгу!");
             } else {
-                System.out.println("В шкафу " + bookshelf.getCountBook() + " книг и сивободно " +
+                System.out.println("В шкафу " + bookshelf.getCountBooks() + " книг и сивободно " +
                         bookshelf.getEmptyShelf() + " полок.");
                 showBookshelf(bookshelf);
             }
@@ -41,7 +41,7 @@ public class BookshelfTest {
             switch (command) {
                 case 1:
                     try {
-                        bookshelf.addBook(new Book(input("Введите автора"), input("Введите название книги"),
+                        bookshelf.add(new Book(input("Введите автора"), input("Введите название книги"),
                                 Integer.parseInt(input("Введите дату публикации"))));
                         System.out.println("Книга добавлена в шкаф!");
                     } catch (RuntimeException e) {
@@ -50,16 +50,15 @@ public class BookshelfTest {
                     break;
                 case 2:
                     try {
-                        if (bookshelf.deleteBook(input("Введите название книги, которую хотите убрать с полки."))) {
-                            System.out.println("Книга успешно удалена!");
-                        }
+                        bookshelf.delete(input("Введите название книги, которую хотите убрать с полки."));
+                        System.out.println("Книга успешно удалена!");
                     } catch (RuntimeException ex) {
                         System.out.println(ex.getMessage());
                     }
                     break;
                 case 3:
                     try {
-                        Book book = bookshelf.searchBook(input("Введите название книги, которую хотите найти в шкафу."));
+                        Book book = bookshelf.search(input("Введите название книги, которую хотите найти в шкафу."));
                         System.out.println("Книга найдена: " + book);
                     } catch (RuntimeException ex) {
                         System.out.println(ex.getMessage());
@@ -69,7 +68,7 @@ public class BookshelfTest {
                     showBookshelf(bookshelf);
                     break;
                 case 5:
-                    System.out.println("Количество книг в шкафу: " + bookshelf.getCountBook());
+                    System.out.println("Количество книг в шкафу: " + bookshelf.getCountBooks());
                     break;
                 case 6:
                     System.out.println("Количество пустых полок в шкафу: " + bookshelf.getEmptyShelf());
@@ -93,16 +92,21 @@ public class BookshelfTest {
         return new Scanner(System.in).nextLine();
     }
 
-    private static void showBookshelf(Bookshelf bookshelf) {
-        if (bookshelf.getCountBook() == 0) {
-            System.out.println("Шкаф пуст!");
-            return;
+    public static void showBookshelf(Bookshelf bookshelf) {
+        try {
+            Book[] books = bookshelf.getBooks();
+            int length = books.length;
+            for (int i = 0; i < length; i++) {
+                if (books[i] == null) {
+                    System.out.printf("%s", "|                                          |\n");
+                    break;
+                }
+                System.out.printf("%s%s%s", "|", books[i] , "|\n");
+                System.out.printf("%s", "|------------------------------------------|\n");
+            }
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
         }
-        for (int i = 0; i < bookshelf.getCountBook(); i++) {
-            System.out.printf("%s%s%s", "|", bookshelf.showBook(i) , "|\n");
-            System.out.printf("%s", "|------------------------------------------|\n");
-        }
-        System.out.printf("%s", "|                                          |\n");
     }
 
     private static void keyPressed() {
