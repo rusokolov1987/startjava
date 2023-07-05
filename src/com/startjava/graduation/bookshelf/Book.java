@@ -10,18 +10,22 @@ public class Book {
         this.author = author;
         this.title = title;
         this.published = published;
-    }
-
-    public String getAuthor() {
-        return author;
+        setLengthInfo();
     }
 
     public String getTitle() {
         return title;
     }
 
-    public int getPublished() {
-        return published;
+    public int getLengthInfo() {
+        return lengthInfo;
+    }
+
+    private void setLengthInfo() {
+        String[] bookInfo = this.toString().split(", ");
+        for (String info : bookInfo) {
+            lengthInfo += info.length();
+        }
     }
 
     @Override
