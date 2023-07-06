@@ -22,10 +22,7 @@ public class Book {
     }
 
     private void setLengthInfo() {
-        String[] bookInfo = this.toString().split(", ");
-        for (String info : bookInfo) {
-            lengthInfo += info.length();
-        }
+        lengthInfo = this.toString().length();
     }
 
     @Override
