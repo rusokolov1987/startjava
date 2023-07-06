@@ -36,11 +36,16 @@ public class Bookshelf {
         throw new RuntimeException("Книга не найдена");
     }
 
-    public Book[] getBooks() {
-        if (countBooks == 0) {
-            throw new RuntimeException("Шкаф пуст!");
+    public void showBookshelf() {
+        int length = books.length;
+        for (int i = 0; i < length; i++) {
+            if (books[i] == null) {
+                System.out.printf("%s", "|                                          |\n");
+                break;
+            }
+            System.out.printf("%s%s%s", "|", books[i] , "|\n");
+            System.out.printf("%s", "|------------------------------------------|\n");
         }
-        return Arrays.copyOf(books, CAPACITY);
     }
 
     public int getCountBooks() {

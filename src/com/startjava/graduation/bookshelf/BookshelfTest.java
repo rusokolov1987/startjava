@@ -25,7 +25,7 @@ public class BookshelfTest {
             } else {
                 System.out.println("В шкафу " + bookshelf.getCountBooks() + " книг и сивободно " +
                         bookshelf.getEmptyShelf() + " полок.");
-                showBookshelf(bookshelf);
+                bookshelf.showBookshelf();
             }
             int command;
             while (true) {
@@ -65,7 +65,7 @@ public class BookshelfTest {
                     }
                     break;
                 case 4:
-                    showBookshelf(bookshelf);
+                    bookshelf.showBookshelf();
                     break;
                 case 5:
                     System.out.println("Количество книг в шкафу: " + bookshelf.getCountBooks());
@@ -90,23 +90,6 @@ public class BookshelfTest {
     private static String input(String message) {
         System.out.println(message);
         return new Scanner(System.in).nextLine();
-    }
-
-    public static void showBookshelf(Bookshelf bookshelf) {
-        try {
-            Book[] books = bookshelf.getBooks();
-            int length = books.length;
-            for (int i = 0; i < length; i++) {
-                if (books[i] == null) {
-                    System.out.printf("%s", "|                                          |\n");
-                    break;
-                }
-                System.out.printf("%s%s%s", "|", books[i] , "|\n");
-                System.out.printf("%s", "|------------------------------------------|\n");
-            }
-        } catch (RuntimeException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     private static void keyPressed() {
