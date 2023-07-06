@@ -12,11 +12,10 @@ public class Bookshelf {
     }
 
     public void add(Book book) {
-        if (countBooks < CAPACITY) {
-            books[countBooks++] = book;
-            return;
+        if (countBooks >= CAPACITY) {
+            throw new RuntimeException("Книга не может быть добавлена, т.к. все полки в шкафу заняты!");
         }
-        throw new RuntimeException("Книга не может быть добавлена, т.к. все полки в шкафу заняты!");
+        books[countBooks++] = book;
     }
 
     public void delete(String title) {
@@ -36,23 +35,15 @@ public class Bookshelf {
         throw new RuntimeException("Книга не найдена");
     }
 
-    public void showBookshelf() {
-        int length = books.length;
-        for (int i = 0; i < length; i++) {
-            if (books[i] == null) {
-                System.out.printf("%s", "|                                          |\n");
-                break;
-            }
-            System.out.printf("%s%s%s", "|", books[i] , "|\n");
-            System.out.printf("%s", "|------------------------------------------|\n");
-        }
+    public Book[] getBooks() {
+        return Arrays.copyOf(books, CAPACITY);
     }
 
     public int getCountBooks() {
         return countBooks;
     }
 
-    public int getEmptyShelf() {
+    public int getEmptyShelfs() {
         return CAPACITY - countBooks;
     }
 

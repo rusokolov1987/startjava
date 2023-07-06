@@ -24,7 +24,7 @@ public class BookshelfTest {
                 System.out.println("Шкаф пуст! Вы можете добавить первую книгу!");
             } else {
                 System.out.println("В шкафу " + bookshelf.getCountBooks() + " книг и сивободно " +
-                        bookshelf.getEmptyShelf() + " полок.");
+                        bookshelf.getEmptyShelfs() + " полок.");
                 bookshelf.showBookshelf();
             }
             int command;
@@ -71,7 +71,7 @@ public class BookshelfTest {
                     System.out.println("Количество книг в шкафу: " + bookshelf.getCountBooks());
                     break;
                 case 6:
-                    System.out.println("Количество пустых полок в шкафу: " + bookshelf.getEmptyShelf());
+                    System.out.println("Количество пустых полок в шкафу: " + bookshelf.getEmptyShelfs());
                     break;
                 case 7:
                     bookshelf.clean();
@@ -90,6 +90,19 @@ public class BookshelfTest {
     private static String input(String message) {
         System.out.println(message);
         return new Scanner(System.in).nextLine();
+    }
+
+    public static void showBookshelf(Bookshelf bookshelf) {
+        int length = bookshelf.getBooks().length;
+        Book[] books = bookshelf.getBooks();
+        for (int i = 0; i < length; i++) {
+            if (books[i] == null) {
+                System.out.printf("%s", "|                                          |\n");
+                break;
+            }
+            System.out.printf("%s%s%s", "|", books[i] , "|\n");
+            System.out.printf("%s", "|------------------------------------------|\n");
+        }
     }
 
     private static void keyPressed() {
