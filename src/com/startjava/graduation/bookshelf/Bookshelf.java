@@ -23,7 +23,7 @@ public class Bookshelf {
         if (index == -1) {
             throw new RuntimeException("Книга не найдена и не может быть удалена");
         }
-        System.arraycopy(books, index + 1, books, index, countBooks - index);
+        System.arraycopy(books, index + 1, books, index, countBooks - index - 1);
         countBooks--;
     }
 
@@ -36,7 +36,7 @@ public class Bookshelf {
     }
 
     public Book[] getBooks() {
-        return Arrays.copyOf(books, CAPACITY);
+        return Arrays.copyOf(books, countBooks);
     }
 
     public int getCountBooks() {

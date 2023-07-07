@@ -22,7 +22,7 @@ public class Book {
     }
 
     private void setLengthInfo() {
-        lengthInfo = this.toString().length();
+        lengthInfo = toString().length();
     }
 
     @Override
