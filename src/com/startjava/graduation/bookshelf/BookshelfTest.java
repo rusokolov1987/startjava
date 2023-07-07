@@ -8,7 +8,7 @@ public class BookshelfTest {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             showBookCase(bookshelf);
-            messgeWindow();
+            messageWindow();
             int result = selectMenuItem(scanner, bookshelf);
             if (result < 0) {
                 break;
@@ -34,7 +34,7 @@ public class BookshelfTest {
         }
     }
 
-    private static void messgeWindow() {
+    private static void messageWindow() {
         System.out.println("""
                     Меню
                 1. Добавить
