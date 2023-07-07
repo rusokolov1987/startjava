@@ -39,6 +39,15 @@ public class BookshelfTest {
         }
     }
 
+    private static int getMaxLength(Bookshelf bookshelf) {
+        int maxlength = 0;
+        Book[] books = bookshelf.getBooks();
+        for (Book book : books) {
+            maxlength = Math.max(maxlength, book.getLengthInfo());
+        }
+        return maxlength;
+    }
+
     private static void messageWindow() {
         System.out.println("""
                     Меню
@@ -60,6 +69,11 @@ public class BookshelfTest {
         } catch (NumberFormatException ex) {
             throw new NumberFormatException("Неверный формат ввода!");
         }
+    }
+
+    private static String input(String message, Scanner scanner) {
+        System.out.println(message);
+        return scanner.nextLine();
     }
 
     private static int launch(Scanner scanner, Bookshelf bookshelf, int itemNumber) {
@@ -117,11 +131,6 @@ public class BookshelfTest {
         }
     }
 
-    private static String input(String message, Scanner scanner) {
-        System.out.println(message);
-        return scanner.nextLine();
-    }
-
     private static void inputEnter() {
         while (true) {
             System.out.println("Нажмите Enter для продолжения работы!");
@@ -130,14 +139,5 @@ public class BookshelfTest {
                 break;
             }
         }
-    }
-
-    private static int getMaxLength(Bookshelf bookshelf) {
-        int maxlength = 0;
-        Book[] books = bookshelf.getBooks();
-        for (Book book : books) {
-            maxlength = Math.max(maxlength, book.getLengthInfo());
-        }
-        return maxlength;
     }
 }
