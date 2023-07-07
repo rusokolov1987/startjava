@@ -10,7 +10,7 @@ public class BookshelfTest {
             showBookCase(bookshelf);
             messageWindow();
             try {
-                int itemNumber = selectMenuItem(scanner, bookshelf);
+                int itemNumber = selectMenuItem(scanner);
                 if (launch(scanner, bookshelf, itemNumber) < 0) {
                     break;
                 }
@@ -50,7 +50,7 @@ public class BookshelfTest {
                 """);
     }
 
-    private static int selectMenuItem(Scanner scanner, Bookshelf bookshelf) {
+    private static int selectMenuItem(Scanner scanner) {
         try {
             int itemNumber = Integer.parseInt(input("Введите номер пункта меню!", scanner));
             if (itemNumber < 0) {
