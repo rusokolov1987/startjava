@@ -92,8 +92,8 @@ public class BookshelfTest {
             bookshelf.add(new Book(input("Введите автора"), input("Введите название книги"),
                     Integer.parseInt(input("Введите дату публикации"))));
             System.out.println("Книга добавлена в шкаф!");
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
