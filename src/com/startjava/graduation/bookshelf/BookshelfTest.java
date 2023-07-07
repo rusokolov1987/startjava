@@ -9,9 +9,15 @@ public class BookshelfTest {
         while (true) {
             showBookCase(bookshelf);
             messageWindow();
-            int result = selectMenuItem(scanner, bookshelf);
-            if (result < 0) {
-                break;
+            try {
+                int itemNumber = selectMenuItem(scanner, bookshelf);
+                if (launch(scanner, bookshelf, itemNumber) < 0) {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
             }
             inputEnter();
         }
@@ -46,42 +52,45 @@ public class BookshelfTest {
     }
 
     private static int selectMenuItem(Scanner scanner, Bookshelf bookshelf) {
-        int itemNumber;
-        while (true) {
-            try {
-                itemNumber = Integer.parseInt(input("Введите номер пункта меню!", scanner));
-                return switch (itemNumber) {
-                    case 1 -> {
-                        addBook(bookshelf, scanner);
-                        yield 1;
-                    }
-                    case 2 -> {
-                        deleteBook(bookshelf, scanner);
-                        yield 1;
-                    }
-                    case 3 -> {
-                        searhBook(bookshelf, scanner);
-                        yield 1;
-                    }
-                    case 4 -> {
-                        bookshelf.clean();
-                        System.out.println("Шкаф пуст!");
-                        yield 1;
-                    }
-                    case 5 -> {
-                        System.out.println("Вы закрыли шкаф! Всего доброго!");
-                        yield -1;
-                    }
-                    default -> {
-                        System.out.println("Такого пункта в меню нет!");
-                        yield 1;
-                    }
-                };
-            } catch (NumberFormatException ex) {
-                System.out.println("Неверный формат ввода!");
-                return 1;
+        try {
+            int itemNumber = Integer.parseInt(input("Введите номер пункта меню!", scanner));
+            if (itemNumber < 0) {
+                throw new RuntimeException("Такого пункта в меню нет!");
             }
+            return itemNumber;
+        } catch (NumberFormatException ex) {
+            throw new NumberFormatException("Неверный формат ввода!");
         }
+    }
+
+    private static int launch(Scanner scanner, Bookshelf bookshelf, int itemNumber) {
+        return switch (itemNumber) {
+            case 1 -> {
+                addBook(bookshelf, scanner);
+                yield 1;
+            }
+            case 2 -> {
+                deleteBook(bookshelf, scanner);
+                yield 1;
+            }
+            case 3 -> {
+                searhBook(bookshelf, scanner);
+                yield 1;
+            }
+            case 4 -> {
+                bookshelf.clean();
+                System.out.println("Шкаф пуст!");
+                yield 1;
+            }
+            case 5 -> {
+                System.out.println("Вы закрыли шкаф! Всего доброго!");
+                yield -1;
+            }
+            default -> {
+                System.out.println("Такого пункта в меню нет!");
+                yield 1;
+            }
+        };
     }
 
     private static void addBook(Bookshelf bookshelf, Scanner scanner) {
