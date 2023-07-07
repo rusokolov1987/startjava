@@ -11,7 +11,7 @@ public class BookshelfTest {
             messageWindow();
             try {
                 int itemNumber = selectMenuItem(scanner);
-                if (launch(scanner, bookshelf, itemNumber) < 0) {
+                if (launch(scanner, bookshelf, itemNumber) == -1) {
                     break;
                 }
             } catch (NumberFormatException e) {
@@ -85,10 +85,7 @@ public class BookshelfTest {
                 System.out.println("Вы закрыли шкаф! Всего доброго!");
                 yield -1;
             }
-            default -> {
-                System.out.println("Такого пункта в меню нет!");
-                yield 1;
-            }
+            default -> throw new RuntimeException("Такого пункта в меню нет!");
         };
     }
 
