@@ -60,4 +60,12 @@ public class Bookshelf {
         }
         return -1;
     }
+
+    public int getMaxLength() {
+        int maxlength = 0;
+        for (int i = 0; i < countBooks; i++) {
+            maxlength = Math.max(maxlength, books[i].getLengthInfo());
+        }
+        return maxlength;
+    }
 }

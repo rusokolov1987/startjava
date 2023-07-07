@@ -10,7 +10,7 @@ public class Book {
         this.author = author;
         this.title = title;
         this.published = published;
-        setLengthInfo();
+        lengthInfo = toString().length();
     }
 
     public String getTitle() {
@@ -19,10 +19,6 @@ public class Book {
 
     public int getLengthInfo() {
         return lengthInfo;
-    }
-
-    private void setLengthInfo() {
-        lengthInfo = toString().length();
     }
 
     @Override
