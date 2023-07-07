@@ -29,7 +29,6 @@ public class BookshelfTest {
         } else {
             System.out.println("В шкафу " + bookshelf.getCountBooks() + " книг и свободно " +
                     bookshelf.getEmptyShelfs() + " полок.");
-            int length = bookshelf.getBooks().length;
             Book[] books = bookshelf.getBooks();
             int maxLength = getMaxLength(bookshelf);
             for (Book book : books) {
