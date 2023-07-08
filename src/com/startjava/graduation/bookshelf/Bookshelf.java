@@ -17,7 +17,7 @@ public class Bookshelf {
             throw new RuntimeException("Книга не может быть добавлена, т.к. все полки в шкафу заняты!");
         }
         books[countBooks++] = book;
-        setMaxLength();
+        setMaxLength(book.getLengthInfo());
     }
 
     public void delete(String title) {
@@ -25,9 +25,10 @@ public class Bookshelf {
         if (index == -1) {
             throw new RuntimeException("Книга не найдена и не может быть удалена");
         }
+        int lengthBook = books[index].getLengthInfo();
         System.arraycopy(books, index + 1, books, index, countBooks - index - 1);
         countBooks--;
-        setMaxLength();
+        setMaxLength(lengthBook);
     }
 
     public Book search(String title) {
@@ -64,7 +65,11 @@ public class Bookshelf {
         return -1;
     }
 
-    private void setMaxLength() {
+    private void setMaxLength(int lengthBook) {
+        if (maxlength < lengthBook) {
+            maxlength = lengthBook;
+            return;
+        }
         maxlength = 0;
         for (int i = 0; i < countBooks; i++) {
             maxlength = Math.max(maxlength, books[i].getLengthInfo());

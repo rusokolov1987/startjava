@@ -63,11 +63,6 @@ public class BookshelfTest {
         }
     }
 
-    private static String input(String message) {
-        System.out.println(message);
-        return scanner.nextLine();
-    }
-
     private static int launch(Bookshelf bookshelf, int itemNumber) {
         int check = 0;
         switch (itemNumber) {
@@ -113,6 +108,11 @@ public class BookshelfTest {
         } catch (RuntimeException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    private static String input(String message) {
+        System.out.println(message);
+        return scanner.nextLine();
     }
 
     private static void inputEnter() {
