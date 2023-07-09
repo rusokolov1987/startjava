@@ -66,8 +66,7 @@ public class Bookshelf {
     }
 
     private void setMaxLength(int lengthBook) {
-        if (maxlength < lengthBook) {
-            maxlength = lengthBook;
+        if (lengthBook < maxlength) {
             return;
         }
         maxlength = 0;
